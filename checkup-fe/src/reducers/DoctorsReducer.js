@@ -1,14 +1,19 @@
-function DoctorsReducer(state = { isSearching: false, searchResults: []}, action){
+function DoctorsReducer(state = { alldoctors: [], filteredResults: []}, action){
   switch (action.type) {
-    case "SEARCHING_DOCTORS":
-      return Object.assign({}, state, {isSearching: true})
-    case "SEARCHED_DOCTORS":
-      return Object.assign({}, state, {searchResults: action.payload, isSearching: false})
-    case "LOGGEDOUT_USER":
-        return Object.assign({}, state, {searchResults: [], isSearching: false})
+  	case "FETCHED_DOCTORS":
+  		return Object.assign({}, state, {alldoctors: action.payload, isFetching: false})
+	case "FETCHING_DOCTORS":
+		return Object.assign({}, state, { isFetching: true})
+	case "FILTERED_DOCTORS":
+		let filtered = state.alldoctors.filter(doctor => (doctor.city.toLowerCase() === action.addresspayload || doctor.state.toLowerCase() === action.addresspayload || doctor.zip === action.addresspayload ) && ( doctor.specialties.split(" ")[0].toLowerCase().includes(action.specialtypayload)))
+		console.log(filtered)
+		return Object.assign({}, state, { filteredResults: [...filtered], isFetching: false})
+	case "FILTERING_DOCTORS":
+		return Object.assign({}, state, { isFetching: true})
     default:
       return state
   }
 }
 
 export default DoctorsReducer
+

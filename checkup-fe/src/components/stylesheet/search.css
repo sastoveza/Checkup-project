@@ -1,0 +1,90 @@
+/*.search-home {
+  font-size: 20px;
+  position: absolute;
+  top: 210px;
+  left: 10%;
+  color: $navy-blue;
+
+  input {
+    height: 50px;
+    line-height: 40px;
+    margin-left: 10px;
+    border: solid black 2px;
+  }
+
+  input[placeholder="Specialty"] {
+    width: 450px;
+    padding-left: 30px;
+  }
+
+  input[placeholder="Address"] {
+    padding-left: 30px;
+    width: 360px;
+  }
+
+  input[type="submit"] {
+    background-color: $zoc-yellow;
+    height: 54px;
+    padding: 5px;
+    cursor: pointer;
+    cursor: hand;
+  }
+
+  input[type="submit"]:hover {
+    background-color: $navy-blue;
+    color: white;
+  }
+}
+
+.search-bar {
+  @extend .search-home;
+  height: 75px;
+  background-color: $zoc-yellow;
+  position: sticky;
+  top: 0px;
+  white-space: nowrap;
+  z-index: 5;
+
+  input {
+    margin-top: 12px;
+  }
+
+  input[placeholder="Specialty"] {
+    margin-left: 130px;
+  }
+
+  input[type="submit"] {
+    background-color: $navy-blue;
+    color: white;
+    cursor: pointer;
+    cursor: hand;
+  }
+}
+
+.search-master {
+  white-space: nowrap;
+}
+
+.search-results {
+  margin-left: 70px;
+  width: 960px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.index-item {
+  height: 210px;
+  margin: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.doc-search-schedule {
+  width: 420px;
+
+  section {
+    height: 210px;
+  }
+}
+*/

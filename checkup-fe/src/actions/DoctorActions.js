@@ -1,23 +1,63 @@
-function searchingDoctors() {
+function fetchingDoctors() {
 	return {
-		type: "SEARCHING_DOCTORS"
+		type: "FETCHING_DOCTORS"
 	}
 }
 
-function searchedDoctors(doctors){
-	return{
-		type: "SEARCHED_DOCTORS",
-		payload: doctors
+export function fetchedDoctors(alldoctors) {
+	// debugger;
+	return {
+		type: "FETCHED_DOCTORS",
+		payload: alldoctors
 	}
 }
 
-export function searchDoctors(search) {
+
+
+// function searchingDoctors() {
+// 	return {
+// 		type: "SEARCHING_DOCTORS"
+// 	}
+// }
+
+// function searchedDoctors(doctors){
+// 	return{
+// 		type: "SEARCHED_DOCTORS",
+// 		payload: doctors
+// 	}
+// }
+
+export function fetchDoctors() {
 	return function(dispatch) {
-		dispatch(searchingDoctors())
+		dispatch(fetchingDoctors())
 		fetch('http://localhost:3000/doctors')
 		.then(res => res.json())
 		.then((json) => {
-			dispatch(searchedDoctors(json))
+			dispatch(fetchedDoctors(json))
 		})
 	}
 }
+
+// function searchingAddress() {
+// 	return {
+// 		type: "SEARCHING_ADDRESS"
+// 	}
+// }
+
+// function searchedAddress(address) {
+// 	return {
+// 		type: "SEARCHED_ADDRESS",
+// 		payload: address
+// 	}
+// }
+
+// export function searchAddress(search) {
+// 	return function(dispatch) {
+// 		dispatch(searchingAddress())
+// 		fetch('http://localhost:3000/doctors')
+// 		.then(res => res.json())
+// 		.then(json => {
+// 			dispatch(searchedAddress(json))
+// 		})
+// 	}
+// }

@@ -25,7 +25,7 @@ class SearchContainer extends React.Component {
 
 function mapStateToProps(state){
   return {
-    searchResults: state.doctors.searchResults,
+    alldoctors: state.doctors.alldoctors,
     isSearching: state.doctors.isSearching
   }
 }
