@@ -16,7 +16,7 @@ end
 
 
 i = 0
-skips = [0, 100, 200,300,400,500]
+skips = [0, 100]
 while i < skips.length
   doctor_list = DoctorSeeding.new(skips[i])
   doctors = doctor_list.doctor["data"]
@@ -50,6 +50,33 @@ while i < skips.length
     end
   end
   i+=1
+end
+
+# Users
+user_names = ["Martina", "Matt", "Isabelle", "Stacey", "Luke"]
+passwords = ["long_password", "bouvier12345", "_hi", "passpasspass", "wine_is_great"]
+users = []
+5.times do |i|
+  users << User.create(username: user_names[i], password: passwords[i])
+end
+
+Doctor.all.each_with_index do |doctor|
+  current_time = Time.now
+  current_yr = current_time.year
+  current_m = current_time.month
+  current_d = current_time.day
+  start_day = Time.new(current_yr, current_m, current_d, 8) - 7.day
+
+  150.times do |i|
+    user = users[0]
+    # byebug
+    app = Appointment.create(doctor_id: doctor.id, start_time: start_day.to_datetime, city: doctor.city, state: doctor.state, zip: doctor.zip)
+    if i % 5 == 0 && Time.now > start_day
+      app.update(reason: "I'm sick", user_id: user.id) unless user.appointments.count > 10
+    end
+    start_day += 2.hour
+    start_day += 14.hour if start_day.hour == 18
+  end
 end
 
 
