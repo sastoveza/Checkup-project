@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchForm from './SearchForm'
-import { Grid, List, Loader} from 'semantic-ui-react'
+// import { Grid, List, Loader} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import SearchList from './SearchList'
 import { Route } from 'react-router-dom'

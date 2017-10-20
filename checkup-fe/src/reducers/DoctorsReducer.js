@@ -5,7 +5,7 @@ function DoctorsReducer(state = { alldoctors: [], filteredResults: []}, action){
 	case "FETCHING_DOCTORS":
 		return Object.assign({}, state, { isFetching: true})
 	case "FILTERED_DOCTORS":
-		let filtered = state.alldoctors.filter(doctor => (doctor.city.toLowerCase() === action.addresspayload || doctor.state.toLowerCase() === action.addresspayload || doctor.zip === action.addresspayload ) && ( doctor.specialties.split(" ")[0].toLowerCase().includes(action.specialtypayload)))
+		let filtered = state.alldoctors.filter(doctor => (doctor.city.toLowerCase().includes(action.addresspayload) || doctor.state.toLowerCase().includes(action.addresspayload) || doctor.zip.includes(action.addresspayload) ) && ( doctor.specialties.split(" ")[0].toLowerCase().includes(action.specialtypayload)))
 		console.log(filtered)
 		return Object.assign({}, state, { filteredResults: [...filtered], isFetching: false})
 	case "FILTERING_DOCTORS":

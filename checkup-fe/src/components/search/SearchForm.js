@@ -1,8 +1,8 @@
 import React from 'react';
 import { filteredDoctors } from '../../actions/FilterActions';
 import { connect } from 'react-redux';
-import { Header, Icon, Popup } from 'semantic-ui-react';
-import '../../index.css'
+import { Header, Icon, Popup, Form, Button } from 'semantic-ui-react';
+
 
 class SearchForm extends React.Component {
 	constructor() {
@@ -67,19 +67,22 @@ class SearchForm extends React.Component {
 		// const searchClass = this.isHomepage()
 
 		return (
-			<div className="ui header blue menu">	
-				<form className="search-home" onSubmit={this.handleSearch}>
-					<input type="text" 
-						value={this.state.specialty} 
-						onChange={this.handleSpecialtyChange} 
-						placeholder="Search for Doctors" />
+			<div>	
+				<Form onSubmit={this.handleSearch}>
+					<Form.Field inline>
+						<input type="text" 
+							value={this.state.specialty} 
+							onChange={this.handleSpecialtyChange} 
+							placeholder="Search for Doctors" />
 
-					<input type="text"
-						value={this.state.address}
-						onChange={this.handleAddressChange}
-						placeholder="Search with Address" />
-				 	<input type="submit" value="Search"/>
-			 	</form>
+						<input type="text"
+							value={this.state.address}
+							onChange={this.handleAddressChange}
+							placeholder="Search with Address" />
+					
+					 	<Button>Search</Button>
+				 	</Form.Field>
+			 	</Form>
 			 	<br />
 		 	</div>
 	 	)

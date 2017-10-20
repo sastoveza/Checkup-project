@@ -1,9 +1,9 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createDoctorFavorite } from '../../actions/FavoriteActions'
 // import { create } from '../../actions/FavoriteActions'
-
+import { Card, Icon, Image, Grid } from 'semantic-ui-react'
 // import {parseJwt} from '../../services/decodeJWT'
 
 
@@ -24,26 +24,35 @@ class SearchItem extends React.Component{
     }
 
    return (
-       <div className="ui card">
-          <div className="image">
-           <img src={this.props.doctor.image_url}/>
-          </div>
-          <div className="content">
-            <a className="header">{this.props.doctor.name}</a>
-              <div className="meta">
-                <span className="date">{this.props.doctor.specialties.split(" ")[0]}</span>
-              </div>
-          <div className="description">
-            {bio}
-          </div>
-          </div>
-          <div className="extra content">
-            <a>
-              <i className="user icon"></i>
-              {this.props.doctor.city},{this.props.doctor.state}
-            </a>..................... <a  className="add" onClick={this.handleClick}>Add Doc</a>
-          </div>
-      </div>
+       <div>
+        <Grid columns={3} divided>
+          <Grid.Row>
+            <Grid.Column>
+              <Card>
+                <Image src={this.props.doctor.image_url} size='medium' />
+                <Card.Content>
+                  <Card.Header>
+                    <a>{this.props.doctor.name}</a>
+                  </Card.Header>  
+                  <Card.Meta>
+                    <span className="date">{this.props.doctor.specialties.split(" ")[0]}</span>
+                  </Card.Meta>
+                  <Card.Description>
+                     {bio}
+                  </Card.Description>     
+               </Card.Content>
+                <Card.Content extra>
+                  <a>
+                  <Icon name="user" />
+                  {this.props.doctor.city},{this.props.doctor.state}
+                  </a>..................... <a  className="add" onClick={this.handleClick}>Add Doc</a>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+        
+    </div>
     )
   }
 
