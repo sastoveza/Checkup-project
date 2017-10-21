@@ -4,6 +4,8 @@ class CreateDoctors < ActiveRecord::Migration[5.1]
 	  t.string :name
       t.string :specialties
       t.string :insurance, array: true, default: []
+      t.float :lat
+      t.float :lon
       t.string :city
       t.string :state
       t.string :zip

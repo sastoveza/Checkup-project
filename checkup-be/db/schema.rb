@@ -16,12 +16,8 @@ ActiveRecord::Schema.define(version: 20171020165303) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "doctor_id", null: false
-    t.text "reason", null: false
-    t.string "city", null: false
-    t.string "state", null: false
-    t.string "zip", null: false
     t.datetime "start_time", null: false
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
@@ -31,6 +27,8 @@ ActiveRecord::Schema.define(version: 20171020165303) do
     t.string "name"
     t.string "specialties"
     t.string "insurance", default: [], array: true
+    t.float "lat"
+    t.float "lon"
     t.string "city"
     t.string "state"
     t.string "zip"

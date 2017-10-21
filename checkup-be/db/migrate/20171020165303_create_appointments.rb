@@ -1,12 +1,11 @@
 class CreateAppointments < ActiveRecord::Migration[5.1]
   def change
     create_table :appointments do |t|
-      t.integer :user_id, null: false
+      t.integer :user_id
       t.integer :doctor_id, null: false
-      t.text :reason, null: false
-      t.string :city, null: false
-      t.string :state, null: false
-      t.string :zip, null: false
+      # t.string :city
+      # t.string :state
+      # t.string :zip
 
       t.timestamp :start_time, null: false
     end

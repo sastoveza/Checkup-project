@@ -10,6 +10,6 @@ get '/welcome', to: 'application#welcome'
 get '/doctors', to: 'doctors#index'
 get '/docs', to: 'users#get_doctors'
 patch '/appointments', to: 'appointments#update'
-get '/appointments', to: 'appointments#show'
+get '/appoint', to: 'appointments#index'
 
 end
