@@ -12,8 +12,8 @@ class AppointmentItem extends React.Component {
 	        <Table celled inverted selectable>
 	          <Table.Header>
 	            <Table.Row>
-	              <Table.HeaderCell>Day</Table.HeaderCell>
 	              <Table.HeaderCell>Date</Table.HeaderCell>
+	              <Table.HeaderCell>Day</Table.HeaderCell>
 	              <Table.HeaderCell>Time</Table.HeaderCell>
               	</Table.Row>
           	  </Table.Header>

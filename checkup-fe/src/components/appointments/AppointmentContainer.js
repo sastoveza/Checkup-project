@@ -12,7 +12,7 @@ class AppointmentContainer extends React.Component {
 		console.log(this.props)
 		return (
 			<div>
-				<Route path="/result" render={(props) => <AppointmentList {...this.props} {...props}/>} />
+				<Route path="/results" render={(props) => <AppointmentList {...this.props} {...props}/>} />
 			</div>
 		)
 	}
