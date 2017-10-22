@@ -1,7 +1,9 @@
 import React from 'react';
 import { filteredDoctors } from '../../actions/FilterActions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { Header, Icon, Popup, Form, Button } from 'semantic-ui-react';
+import { receiveAppointment } from '../../actions/AppointmentActions';
 
 
 class SearchForm extends React.Component {
@@ -22,7 +24,7 @@ class SearchForm extends React.Component {
 		event.preventDefault()
 		this.setState ({
 			address: event.target.value,
-			// address: event.target.value
+			
 		})
 	}
 
@@ -30,19 +32,20 @@ class SearchForm extends React.Component {
 		event.preventDefault()
 		this.setState ({
 			specialty: event.target.value,
-			// address: event.target.value
+			
 		})
 	}
 
 	handleSearch = (event) => {
+		// console.log("inside Search From", this.state)
 		event.preventDefault()
 		if (this.state.specialty  !== "" && this.state.address !== "") {
 			this.props.filteredDoctors(this.state.specialty, this.state.address)
 		}
+		console.log("hitting the search")
+		this.props.receiveAppointment()
 
-		// if (this.state.address !== "") {
-		// 	this.props.searchAddress(this.state.address)
-		// }
+		
 		this.setState ({
 			specialty: "",
 			address: ""
@@ -50,17 +53,6 @@ class SearchForm extends React.Component {
 
 		this.props.history.push("/results")
 	}
-
-
-
-	// isHomepage() {
-	// 	if (this.props.location.pathname === "/") {
-	// 		return "search-home";
-	// 	} else {
-	// 		return "search-bar"
-	// 	}
-	// }
-
 
 	render() {
 
@@ -94,9 +86,9 @@ function mapDispatchToProps(dispatch) {
 	return {
 			filteredDoctors: (specialty, address) => 
 				dispatch(filteredDoctors(specialty, address)),
-			// searchAddress: (search) => 
-			// 	dispatch(searchAddress(search))
-		
+			
+			receiveAppointment: () => 
+				dispatch(receiveAppointment())
 	}
 }
 

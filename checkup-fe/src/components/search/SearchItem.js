@@ -1,8 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { createDoctorFavorite } from '../../actions/FavoriteActions'
-// import { create } from '../../actions/FavoriteActions'
+import { receiveAppointment } from '../../actions/AppointmentActions'
 import { Card, Icon, Image, Grid } from 'semantic-ui-react'
 // import {parseJwt} from '../../services/decodeJWT'
 
@@ -66,8 +65,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createDoctorFavorite: () => {
-      dispatch(createDoctorFavorite())
+    receiveAppointment: () => {
+      dispatch(receiveAppointment())
     }
   }
  }

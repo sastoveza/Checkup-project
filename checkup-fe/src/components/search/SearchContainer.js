@@ -12,7 +12,7 @@ class SearchContainer extends React.Component {
 
 
   render(){
-  	console.log("inside of SearchContainer", this.props)
+  	// console.log("inside of SearchContainer", this.props)
 
     return (
       <div>
@@ -33,3 +33,4 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps)(SearchContainer)
+
