@@ -7,7 +7,7 @@
 
 import React from 'react'
 import SearchContainer from '../search/SearchContainer';
-import AppointmentContainer from '../appointments/AppointmentContainer';
+// import AppointmentContainer from '../appointments/AppointmentContainer';
 import { Route } from 'react-router-dom'
 
 
@@ -17,7 +17,7 @@ class ResultsContainer extends React.Component {
 		return (
 			<div>
 				<SearchContainer />
-				<AppointmentContainer />
+				
 			</div>
 		)
 	}

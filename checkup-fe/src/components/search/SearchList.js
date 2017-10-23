@@ -10,6 +10,7 @@ class SearchList extends React.Component {
   // }
 
   render() {
+    console.log("rendering search list")
     // const searched = this.props.searched.toLowerCase()
     
     // // var filteredDocs= this.props.doctors.filter(doctor => doctor.name.toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch)  || doctor.city.toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch) || doctor.state.toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch) || doctor.zip.includes(this.props.searched) && JSON.parse(doctor.insurance).includes(insuranceSearch) || doctor.specialties.split(" ")[0].toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch)  )

@@ -1,15 +1,41 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { receiveAppointment } from '../../actions/AppointmentActions'
-import { Card, Icon, Image, Grid } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid, Button} from 'semantic-ui-react'
+// import DoctorAppointment from './DoctorAppointment'
+import { getDayRange } from '../appointments/GetDayRange'
+import { sortedAppointmentsByDay } from '../../reducers/Selectors'
+import { filteredDoctors } from '../../actions/FilterActions';
+import { connect } from 'react-redux'
 // import {parseJwt} from '../../services/decodeJWT'
 
 
 class SearchItem extends React.Component{
 
+    constructor(props) {
+    super(props);
 
-  render(){
+    const days = getDayRange();
+
+    this.state = {
+      today: days[0],
+      tomorrow: days[1],
+      dayAfter: days[2],
+      dayFour: days[3],
+    };
+  }
+
+  render() {
+
+    const { doctor, appointments } = this.props;
+    const { today, tomorrow, dayAfter, dayFour } = this.state;
+    
+
+    if (doctor) {
+      if (doctor.specialties) {
+        // const daySortedApps = sortedAppointmentsByDay(
+        //   appointments, [today, tomorrow, dayAfter, dayFour]
+        // );
     if (this.props.doctor.image_url === "https://asset2.betterdoctor.com/assets/general_doctor_male.png" || this.props.doctor.image_url === "https://asset3.betterdoctor.com/assets/general_doctor_male.png" || this.props.doctor.image_url === "https://asset1.betterdoctor.com/assets/general_doctor_male.png"){
       this.props.doctor.image_url = "https://semantic-ui.com/images/avatar/large/elliot.jpg"
     }
@@ -22,14 +48,12 @@ class SearchItem extends React.Component{
       bio = bio.substring(0,400) + "...";
     }
 
-   return (
-       <div>
-        <Grid columns={3} divided>
-          <Grid.Row>
-            <Grid.Column>
-              <Card>
-                <Image src={this.props.doctor.image_url} size='medium' />
-                <Card.Content>
+     return (
+         <div>
+          <Card.Group itemsPerRow={3}>
+            <Card color='olive'>
+              <Card.Content>
+                <Image floated='right' size='medium' src={this.props.doctor.image_url} />
                   <Card.Header>
                     <a>{this.props.doctor.name}</a>
                   </Card.Header>  
@@ -39,36 +63,49 @@ class SearchItem extends React.Component{
                   <Card.Description>
                      {bio}
                   </Card.Description>     
-               </Card.Content>
-                <Card.Content extra>
-                  <a>
-                  <Icon name="user" />
-                  {this.props.doctor.city},{this.props.doctor.state}
-                  </a>..................... <a  className="add" onClick={this.handleClick}>Add Doc</a>
-              </Card.Content>
+             </Card.Content>
+              <Card.Content extra>
+                <Icon name="user" />
+                {this.props.doctor.city},{this.props.doctor.state}
+                <br />
+                <Button basic color='grey' size='large'>Book Appointment Now!</Button>
+            </Card.Content>
             </Card>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-        
-    </div>
-    )
-  }
+          </Card.Group>
+          
+         </div>
+        )
+      }
 
-}
-
-function mapStateToProps(state) {
-  return {
-    doctors: state.doctors.list
+    }
   }
 }
+
+
+
+
+// function mapStateToProps(state){
+//   // debugger
+//   return {
+//     alldoctors: state.doctors.alldoctors,
+//     isSearching: state.doctors.isSearching
+//   }
+// }
 
 function mapDispatchToProps(dispatch) {
   return {
-    receiveAppointment: () => {
-      dispatch(receiveAppointment())
+      filteredDoctors: (specialty, address) => 
+        dispatch(filteredDoctors(specialty, address)),
+      
+      receiveAppointment: () => 
+        dispatch(receiveAppointment())
     }
   }
- }
+ 
 
- export default connect(mapStateToProps, mapDispatchToProps)(SearchItem)
+ export default connect(null, mapDispatchToProps)(SearchItem)
+
+
+ // <DoctorAppointment 
+          // apps={daySortedApps}
+          // daysToRender={this.state} />

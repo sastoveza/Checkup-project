@@ -12,3 +12,4 @@ export const getDayRange = () => {
 
   return [today._d, tomorrow._d, dayAfter._d, dayFour._d];
 };
+
