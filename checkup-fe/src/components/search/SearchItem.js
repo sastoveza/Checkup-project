@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { receiveAppointment } from '../../actions/AppointmentActions'
 import { Card, Icon, Image, Grid, Button} from 'semantic-ui-react'
+import AppointmentBooking from '../appointments/AppointmentBooking'
 // import DoctorAppointment from './DoctorAppointment'
 import { getDayRange } from '../appointments/GetDayRange'
 import { sortedAppointmentsByDay } from '../../reducers/Selectors'
@@ -29,13 +30,13 @@ class SearchItem extends React.Component{
 
     const { doctor, appointments } = this.props;
     const { today, tomorrow, dayAfter, dayFour } = this.state;
-    
+    // debugger;
 
     if (doctor) {
       if (doctor.specialties) {
-        // const daySortedApps = sortedAppointmentsByDay(
-        //   appointments, [today, tomorrow, dayAfter, dayFour]
-        // );
+        const daySortedApps = sortedAppointmentsByDay(
+          appointments, [today, tomorrow, dayAfter, dayFour]
+        );
     if (this.props.doctor.image_url === "https://asset2.betterdoctor.com/assets/general_doctor_male.png" || this.props.doctor.image_url === "https://asset3.betterdoctor.com/assets/general_doctor_male.png" || this.props.doctor.image_url === "https://asset1.betterdoctor.com/assets/general_doctor_male.png"){
       this.props.doctor.image_url = "https://semantic-ui.com/images/avatar/large/elliot.jpg"
     }
@@ -48,6 +49,7 @@ class SearchItem extends React.Component{
       bio = bio.substring(0,400) + "...";
     }
 
+    console.log('APPTS: ', this.props.doctor.appointments)
      return (
          <div>
           <Card.Group itemsPerRow={3}>
@@ -62,6 +64,7 @@ class SearchItem extends React.Component{
                   </Card.Meta>
                   <Card.Description>
                      {bio}
+
                   </Card.Description>     
              </Card.Content>
               <Card.Content extra>
@@ -87,7 +90,7 @@ class SearchItem extends React.Component{
 // function mapStateToProps(state){
 //   // debugger
 //   return {
-//     alldoctors: state.doctors.alldoctors,
+//     fitlredResults: state.doctors.filteredResults,
 //     isSearching: state.doctors.isSearching
 //   }
 // }

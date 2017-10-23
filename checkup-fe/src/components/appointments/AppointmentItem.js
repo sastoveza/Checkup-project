@@ -1,12 +1,16 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { filteredDoctors } from '../../actions/FilterActions';
 import { Table } from 'semantic-ui-react'
 
 class AppointmentItem extends React.Component {
 
-	render() {
 
+
+
+	render() {
+		console.log(this.props.doctor)
 		return (
 		   <div>
 	        <Table celled inverted selectable>
@@ -20,7 +24,7 @@ class AppointmentItem extends React.Component {
 
           	  <Table.Body>
           	  	<Table.Row>
-          	  		<Table.Cell>{this.props.appointment.start_time}</Table.Cell>
+          	  		<Table.Cell>{this.props.doctor.appointments.start_time}</Table.Cell>
       	  		</Table.Row>
   	  		  </Table.Body>
   		  	</Table>
@@ -29,4 +33,15 @@ class AppointmentItem extends React.Component {
 	}
 }
 
-export default AppointmentItem
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+      filteredDoctors: (specialty, address) => 
+        dispatch(filteredDoctors(specialty, address)),
+      
+    }
+  }
+ 
+
+ export default connect(null, mapDispatchToProps)(AppointmentItem)

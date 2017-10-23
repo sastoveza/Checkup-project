@@ -11,7 +11,7 @@ class AppointmentBooking extends React.Component {
 	}
 
 	componentDidMount() {
-		const appId = =this.props.match.params.id;
+		const appId = this.props.match.params.id;
 		this.props.getAppointment(appId)
 	}
 
@@ -26,7 +26,7 @@ class AppointmentBooking extends React.Component {
 		event.preventDefault()
 		const result = {
 			reason: this.state.reason,
-			user_id: this.props.user.id
+			user_id: this.props.user.id,
 			id: this.props.appointment.id
 		}
 

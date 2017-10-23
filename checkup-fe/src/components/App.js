@@ -8,7 +8,7 @@ import { fetchDoctors } from '../actions/DoctorActions'
 // import UserProfile from './users/UserProfile';
 import SearchContainer from './search/SearchContainer';
 // import AppointmentContainer from './appointments/AppointmentContainer';
-import ResultsContainer from './results/ResultsContainer';
+// import ResultsContainer from './results/ResultsContainer';
 import Authorize from './Authorize';
 // import Homepage from './home/Homepage';
 import LoginForm from './users/LoginForm';
@@ -40,7 +40,7 @@ class App extends Component {
           
           <Route exact path="/login" render={(props) => <AuthLoginForm {...this.props} {...props} /> } />
           <Route exact path="/signUp" render={(props) => <AuthSignUpForm {...this.props} {...props} /> } />
-       	  <Route exact path="/results" component={ResultsContainer} />
+          <Route exact path="/" render={(props) => <SearchContainer {...this.props} {...props} />} />  
       </div>
     );
   }

@@ -1,34 +1,34 @@
-import React from 'react';
-// import { getDayRange } from './AppointmentsDisplay';
-import { connect } from 'react-redux';
-import AppointmentList from './AppointmentList';
+import React from 'react'
+// import { Grid, List, Loader} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import AppointmentList from './AppointmentList'
 import { Route } from 'react-router-dom'
-import { receivedAppointment } from '../../actions/AppointmentActions';
 
 
 class AppointmentContainer extends React.Component {
 
-	render () {
-		console.log(this.props)
-		return (
-			<div>
-				<Route path="/results" render={(props) => <AppointmentList {...this.props} {...props}/>} />
-			</div>
-		)
-	}
+
+
+
+  render(){
+  	// console.log("inside of AppointmentContainer", this.props)
+
+    return (
+      <div>
+        <Route path="/" render={(props) => <AppointmentList {...this.props} {...props}/> } />
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state){
+  return {
+    alldoctors: state.doctors.alldoctors,
+    isAppointmenting: state.doctors.isAppointmenting
+  }
 }
 
 
-function mapStateToProps(state) {
-	return {
-		appointment: state.appointments.appointment,
-	}
-}
 
 export default connect(mapStateToProps)(AppointmentContainer)
-
-
-
-// <Route path="/result" component={getDayRange}/>
-
 
