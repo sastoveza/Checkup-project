@@ -6,7 +6,7 @@ class DoctorsController < ApplicationController
     #       start_time: (Time.now)..(Time.now + 6.day),
     # #       user_id: nil
     #     })
-
+    
     @doctors = Doctor.all
     #render :json => @as.to_json(:include => { :bs => {:include =>:c} })
     render :json => @doctors.to_json(:include => {:appointments => {only: [:start_time, :user_id]}})

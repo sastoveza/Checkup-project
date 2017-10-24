@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171020165303) do
   create_table "appointments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "doctor_id", null: false
+    t.text "reason"
     t.datetime "start_time", null: false
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"

@@ -3,6 +3,7 @@ class CreateAppointments < ActiveRecord::Migration[5.1]
     create_table :appointments do |t|
       t.integer :user_id
       t.integer :doctor_id, null: false
+      t.text :reason
       # t.string :city
       # t.string :state
       # t.string :zip

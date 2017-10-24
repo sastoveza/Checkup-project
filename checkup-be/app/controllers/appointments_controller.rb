@@ -22,11 +22,11 @@ class AppointmentsController < ApplicationController
 	#     end
 	#   end
 
-	#   def show
-	#     @appointment = Appointment.find(params[:id])
+	  def show
+	    @appointment = Appointment.find(params[:id])
 
-	#     unless @appointment.user == nil
-	#       render json: ["This appointment is already booked"], status: 403
-	#     end
-	# end
+	    unless @appointment.user == nil
+	      render json: ["This appointment is already booked"], status: 403
+	    end
+	end
 end

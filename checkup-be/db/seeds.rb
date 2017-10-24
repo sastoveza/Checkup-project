@@ -77,7 +77,8 @@ Doctor.all.each_with_index do |doctor|
 100.times do
   user = User.all
   # byebug
-    Appointment.create(doctor_id: doctor.id, start_time: start_day.to_datetime)
+    Appointment.create!(doctor_id: doctor.id, start_time: start_day.to_datetime)
+  
 
     start_day += 2.hour
     start_day += 14.hour if start_day.hour == 18
