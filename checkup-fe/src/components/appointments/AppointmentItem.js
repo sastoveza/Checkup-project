@@ -1,33 +1,31 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import moment from 'moment'
 import { connect } from 'react-redux'
 import { filteredDoctors } from '../../actions/FilterActions';
-import { Table } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 class AppointmentItem extends React.Component {
 
-
-
-
 	render() {
-		console.log(this.props.doctor)
+		
+		var appointments = this.props.appointment.start_time
+		let appdate = moment(appointments).format("MMMM Do YYYY")
+		let appday = moment(appointments).format("dddd")
+		let apptime = moment(appointments).format("h:mm a")
+		// const filteredAppointments = this.props.doctor.appointments.map((appointments) => )
 		return (
 		   <div>
-	        <Table celled inverted selectable>
-	          <Table.Header>
-	            <Table.Row>
-	              <Table.HeaderCell>Date</Table.HeaderCell>
-	              <Table.HeaderCell>Day</Table.HeaderCell>
-	              <Table.HeaderCell>Time</Table.HeaderCell>
-              	</Table.Row>
-          	  </Table.Header>
-
-          	  <Table.Body>
-          	  	<Table.Row>
-          	  		<Table.Cell>{this.props.doctor.appointments.start_time}</Table.Cell>
-      	  		</Table.Row>
-  	  		  </Table.Body>
-  		  	</Table>
+	        <Grid>
+	          <Grid.Row>
+           		<Grid.Column>
+          	  		{appday}
+      	  		</Grid.Column>
+      	  		<Grid.Column>
+          	  		{apptime}
+      	  		</Grid.Column>
+  	  		  </Grid.Row>
+  		  	</Grid>
 	    </div>
 	    )
 	}

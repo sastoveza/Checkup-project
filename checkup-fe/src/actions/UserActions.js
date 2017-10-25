@@ -8,7 +8,7 @@ function loggedinUser(user) {
 export function loginUser(loginParams) {
 	const body = JSON.stringify(loginParams)
 	return function(dispatch) {
-		fetch("http://localhost:3000/login", {
+		fetch(`http://localhost:3000/login`, {
 			method: 'POST',
 			body: body,
 			headers: {
@@ -57,6 +57,29 @@ export function signUpUser(loginParams) {
 		.then((json) => {
 			localStorage.setItem("jwtToken", json.jwt)
 			dispatch(loggedinUser(json.user))
+		})
+	}
+}
+
+function fetchedCurrentUser (user) {
+	return {
+		type: "FETCHED_CURRENT_USER",
+		payload: user
+	}
+}
+
+export function currentUser() {
+	const jwt = localStorage.getItem("jwToken")
+	return function(dispatch) {
+		fetch(`http://localhost:3000/users/me`, {
+			method: "GET",
+			headers: {
+				"Authorization": "Bearer " + jwt
+			}
+		})
+		.then((res) => res.json())
+		.then((json) => {
+			dispatch(fetchedCurrentUser(json))
 		})
 	}
 }

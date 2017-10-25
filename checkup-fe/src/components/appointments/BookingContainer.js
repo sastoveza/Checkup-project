@@ -1,8 +1,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { getAppointment } from '../actions/AppointmentActions'
-import AppointmentBooking from '/AppointmentBooking'
-
+import { receivedAppointment } from '../../actions/AppointmentActions'
+import BookingForm from './BookingForm'
 
 const mapStatetoProps = (state, ownProps) => {
 	return {
@@ -12,8 +11,8 @@ const mapStatetoProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetcchAppointment: appointment => dispatch(fetcchAppointment(appointment))
+		receivedAppointment: appointment => dispatch(receivedAppointment(appointment))
 	}
 }
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(AppointmentBooking))
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(BookingForm))

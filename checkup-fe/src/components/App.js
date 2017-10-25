@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Nav from './Nav';
-import { Route, Redirect, Switch, Link, HashRouter } from 'react-router-dom';
-
+import { withRouter, Route, Redirect, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import thunk from 'redux-thunk';
 import { fetchDoctors } from '../actions/DoctorActions'
@@ -11,8 +10,10 @@ import SearchContainer from './search/SearchContainer';
 // import ResultsContainer from './results/ResultsContainer';
 import Authorize from './Authorize';
 // import Homepage from './home/Homepage';
+import SearchForm from './search/SearchForm'
 import LoginForm from './users/LoginForm';
 import SignUpForm from './users/SignUpForm';
+import BookingForm from './appointments/BookingForm'
 
 
 
@@ -35,12 +36,15 @@ class App extends Component {
 
     return (
       <div className="App">        
-        	<Nav />
+        	
+          <Route path="/" component={Nav}/>
           
-          
-          <Route exact path="/login" render={(props) => <AuthLoginForm {...this.props} {...props} /> } />
-          <Route exact path="/signUp" render={(props) => <AuthSignUpForm {...this.props} {...props} /> } />
-          <Route exact path="/" render={(props) => <SearchContainer {...this.props} {...props} />} />  
+          <Route path="/login" render={(props) => <AuthLoginForm  {...props} /> } />
+          <Route path="/signUp" render={(props) => <AuthSignUpForm {...props} /> } />
+          <Route path="/" render={(props) => <SearchForm {...props}/>} />
+          <Route exact path="/results" render={(props) => <SearchContainer {...this.props} {...props} />} /> 
+          <Route exact path="/booking" component={BookingForm} />
+
       </div>
     );
   }
@@ -57,7 +61,7 @@ function mapDispatchToProps(dispatch) {
 
 
 
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));
 
 //<Route exact path="/" render={(props) => <SearchContainer {...this.props} {...props} />} />  
 //<Route path="/results" render={(props) => <SearchForm {...props} />} />

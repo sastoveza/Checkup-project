@@ -2,15 +2,20 @@ import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import { Link, Redirect } from 'react-router-dom'
 import { loginUser } from '../../actions/UserActions'
 import { connect } from 'react-redux'
 
 class LoginForm extends React.Component {
-
-  state = {
+  constructor() {
+    super()
+  
+    this.state = {
     username: "",
     password: ""
   }
+}
+
 
   handleUsernameChange = (event) => {
     this.setState ({

@@ -1,18 +1,14 @@
 import React from 'react';
 import { filteredDoctors } from '../../actions/FilterActions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { Header, Icon, Popup, Form, Button } from 'semantic-ui-react';
-import { receiveAppointment } from '../../actions/AppointmentActions';
+import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react';
+// import { receiveAppointment } from '../../actions/AppointmentActions';
 
 
 class SearchForm extends React.Component {
 	constructor() {
 		super()
-
-		// const today = new Date()
-		// const dayAfter = new Date()
-		// dayAfter.setDate(dayAfter.getDate() + 2)
 
 		this.state = {
 			speciality: '',
@@ -37,13 +33,12 @@ class SearchForm extends React.Component {
 	}
 
 	handleSearch = (event) => {
-		// console.log("inside Search From", this.state)
 		event.preventDefault()
 		if (this.state.specialty  !== "" && this.state.address !== "") {
 			this.props.filteredDoctors(this.state.specialty, this.state.address)
 		}
-		console.log("hitting the search")
-		this.props.receiveAppointment()
+		// console.log("hitting the search")
+		// this.props.receiveAppointment()
 
 		
 		this.setState ({
@@ -56,7 +51,7 @@ class SearchForm extends React.Component {
 
 	render() {
 
-		// const searchClass = this.isHomepage()
+	
 
 		return (
 			<div>	
@@ -87,9 +82,9 @@ function mapDispatchToProps(dispatch) {
 			filteredDoctors: (specialty, address) => 
 				dispatch(filteredDoctors(specialty, address)),
 			
-			receiveAppointment: () => 
-				dispatch(receiveAppointment())
+			// receiveAppointment: () => 
+			// 	dispatch(receiveAppointment())
 	}
 }
 
-export default connect(null, mapDispatchToProps)(SearchForm)
+export default withRouter(connect(null, mapDispatchToProps)(SearchForm))

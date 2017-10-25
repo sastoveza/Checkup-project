@@ -1,33 +1,39 @@
 import React from 'react';
-import SearchResults from './SearchResults'
-import { Card, Button, Form } from 'semantic-ui-react'
-import { connect } from 'react-redux'
+import moment from 'moment';
+import SearchResults from './SearchResults';
+import { getDayRange } from '../../actions/AppointmentActions';
+import { Card, Button, Form } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 class SearchList extends React.Component {
 
-  // state = {
-  //  doctors: []
-  // }
+  constructor(props) {
+    super(props)
+
+    const days = getDayRange();
+
+    this.state = {
+      today: days[0],
+      tomorrow: days[1],
+      dayAfter: days[2]
+    }
+  }
 
   render() {
-    // const searched = this.props.searched.toLowerCase()
-    
-    // // var filteredDocs= this.props.doctors.filter(doctor => doctor.name.toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch)  || doctor.city.toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch) || doctor.state.toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch) || doctor.zip.includes(this.props.searched) && JSON.parse(doctor.insurance).includes(insuranceSearch) || doctor.specialties.split(" ")[0].toLowerCase().includes(searched) && JSON.parse(doctor.insurance).includes(insuranceSearch)  )
- 
-    // var filteredDocs = this.props.alldoctors.filter(doctor => doctor.name.toLowerCase().includes(searched) || doctor.city.toLowerCase().includes(searched) || doctor.state.toLowerCase().includes(searched) || doctor.zip.includes(this.props.searched) || doctor.specialties.split(" ")[0].toLowerCase().includes(searched))
-  
+    const { today, tomorrow, dayAfter } = this.state
+
     const searchItems = this.props.filteredResults.map((doctor, index) => {
       return (<SearchResults key={index} doctor={doctor} history={this.props.history} />
     )})
-    //const insuranceSearch = this.props.insuranceSearch
-    
-
-    // const searchItems = filteredDocs.map((doctor, index) => {
-    //   return <SearchItem key={doctor.id} doctor={doctor} history={this.props.history}/>
-    // })
-    console.log(searchItems)
+  
     return (
-      <div classname="search-master">
+      <div>
+        <Button>L</Button>
+        {`${today}`.slice(0, 10)}
+        {`${tomorrow}`.slice(0, 10)}
+        {`${dayAfter}`.slice(0, 10)}
+        <Button>R</Button>
+        <br />
           {searchItems}
          
       </div>
@@ -45,6 +51,3 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(SearchList);
 
 
-//  { this.props.isSearching ? "Searching..." : null }
-          // { this.props.searchResults.length === 0 ? null : <div>
-          //   <p></p>
