@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
     if auth_header
         token = auth_header.split(" ")[1]
       begin
-        JWT.decode(token, "lebronjames", true, {algorithm: 'HS256'})
+        JWT.decode(token, "birdman23", true, {algorithm: 'HS256'})
       rescue JWT::DecodeError
         [{}]
       end
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::API
 
   end
 
-  #
+  
   def current_user
     if decoded_token
       if user_id = decoded_token[0]["user_id"]
@@ -34,20 +34,15 @@ class ApplicationController < ActionController::API
     else
     end
   end
-  #
-  #
-  # #
+  
   def logged_in?
     !!current_user
   end
-  # #
-  # #
-  # #
+  
   def authorized
     redirect_to "/welcome" unless logged_in?
   end
-  # # #
-  # # #
+  
   def welcome
     
     render json: {message: "Please log in"}
