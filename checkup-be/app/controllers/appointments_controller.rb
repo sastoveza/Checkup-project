@@ -2,6 +2,17 @@ class AppointmentsController < ApplicationController
 	# before_action :require_logged_in
 
 
+	 def create
+	 	byebug
+	 	@appointment = Appointment.new(appointment_params, params[:appointment_id])
+	 	if @appointment.save
+	 		render "appointments/show"
+ 		else
+ 			render json: @appointment.errors.full_messages, status: 422
+ 		end
+	 end
+
+
 	  def index
 	  	@appointment = Appointment.all
 	  	render json: @appointment
@@ -29,4 +40,11 @@ class AppointmentsController < ApplicationController
 	      render json: ["This appointment is already booked"], status: 403
 	    end
 	end
+
+private
+
+	def appointment_params
+		params.require(:appointment).permit( :user_id, :doctor_id, :reason )
+	end
+
 end

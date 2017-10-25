@@ -11,40 +11,41 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_doctors
-    @user_doctors = User.last
-    render json: @user_doctors, status: 200
+  def get_appointments
+    @user_appointments = User.find(params[:user_id])
+    render json: @user_appointments, status: 200
   end
 
   def me
 
     if @user
-      render json: {user: @user, doctors: @user.doctors}
+      render json: {user: @user, appointments: @user.appointments}
     else
       render json: {message:"Error"}
     end
 
   end
 
-  def mydoctors
+  def myappointments
     @user = User.find_by(id: params[:id])
-    @doctors = @user.doctors
-    render json: @doctors
+    @appointment = @user.appointments
+    byebug
+    render json: @appointment
   end
 
   def update
     @user = User.find(params[:user_id])
-    @doctor = Doctor.find(params[:doc_id])
-    if !@user.doctors.include?(@doctor)
-    @user.doctors << @doctor
+    @appointment = Appointment.find(params[:appointment_id])
+    if !@user.appointments.include?(@appointment)
+    @user.appointments << @appointment
     end
   end
 
   def destroy
     @user = User.find(params[:user_id])
-    @doctor = Doctor.find(params[:doc_id])
-    @user.doctors.delete(@doctor)
-    render json: @doctor
+    @appointment = Appointment.find(params[:appointment_id])
+    @user.appointments.delete(@appointment)
+    render json: @appointment
 
   end
 
