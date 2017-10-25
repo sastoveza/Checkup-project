@@ -1,8 +1,8 @@
 import React from 'react'
 import moment from 'moment'
-// import { receivedAppointment } from '../../actions/AppointmentActions'
+import { receiveAppointment } from '../../actions/AppointmentActions'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Form, Button, TextArea, Input } from 'semantic-ui-react'
 
 class BookingForm extends React.Component {
@@ -26,25 +26,21 @@ class BookingForm extends React.Component {
 		})
 	}
 
-	// handleSubmit = (event) => {
-	// 	console.log(this.props)
-	// 	if (this.state.reason !== "") {
-	// 	event.preventDefault()
-	// 	this.props.appointment(this.state.reason)
-	// }
+	handleSubmit = (event) => {
+		event.preventDefault()
+		console.log(this.props)
+		if (this.state.reason !== "") {
+		this.props.receiveAppointment(this.state.reason)
+	}
 	
+		this.setState ({
+			reason: ''
+		})
 
-		
-
-	// 	this.setState ({
-	// 		reason: ''
-	// 	})
-
-	// 	// this.props.history.push("/booking")
-	// }
+	}
 
 	render() {
-		alert('blah');
+		console.log(this.props)
 		// const { appointment , user } = this.props
 	// if (appointment) {
 		return (
@@ -84,10 +80,20 @@ class BookingForm extends React.Component {
 	}
 }
 
+const mapStateToProps = (state, ownProps) => {
+	// debugger;
+	return {
+		appointment: state.appointments[ownProps.match.params.id]
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		receiveAppointment: appointment => dispatch(receiveAppointment(appointment))
+	}
+}
 
         
 
 
-export default BookingForm
-//{`${moment(appointment.start_time)
-								// .format("dddd, MMMM Do YYYY, h:mm a")}`}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BookingForm))

@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import SearchResults from './SearchResults';
 import { getDayRange } from '../../actions/AppointmentActions';
-import { Card, Button, Form } from 'semantic-ui-react';
+import { Card, Button, Form, Item, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 class SearchList extends React.Component {
@@ -28,11 +28,33 @@ class SearchList extends React.Component {
   
     return (
       <div>
-        <Button>L</Button>
-        {`${today}`.slice(0, 10)}
-        {`${tomorrow}`.slice(0, 10)}
-        {`${dayAfter}`.slice(0, 10)}
-        <Button>R</Button>
+        <Grid float='right' textAlign='center'>
+          <Grid.Row>
+          <Grid.Column width={7}></Grid.Column>
+          <Grid.Column width={1}>
+            <Button>&lt;</Button>
+          </Grid.Column>
+          
+          <Grid.Column width={2}>
+            {`${today}`.slice(0, 10)}
+          </Grid.Column>
+          
+          <Grid.Column width={2}>
+            {`${tomorrow}`.slice(0, 10)}
+          </Grid.Column>
+
+          <Grid.Column width={2}>
+            {`${dayAfter}`.slice(0, 10)}
+          </Grid.Column>
+          
+          <Grid.Column width={1}>
+            <Button>&gt;</Button>  
+          </Grid.Column>
+          <Grid.Column width={1}></Grid.Column>
+
+          </Grid.Row>
+        </Grid>
+
         <br />
           {searchItems}
          

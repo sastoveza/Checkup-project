@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, withRouter } from 'react-router-dom';
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { filteredDoctors } from '../../actions/FilterActions';
@@ -8,7 +8,8 @@ import { Grid } from 'semantic-ui-react'
 class AppointmentItem extends React.Component {
 
 	render() {
-		
+		// console.log(this.props)
+		var appId = this.props.appointment.id
 		var appointments = this.props.appointment.start_time
 		let appdate = moment(appointments).format("MMMM Do YYYY")
 		let appday = moment(appointments).format("dddd")
@@ -22,7 +23,7 @@ class AppointmentItem extends React.Component {
           	  		{appday}
       	  		</Grid.Column>
       	  		<Grid.Column>
-          	  		{apptime}
+          	  		<Link to={`/booking/${appId}`}>{apptime}</Link>
       	  		</Grid.Column>
   	  		  </Grid.Row>
   		  	</Grid>
@@ -42,4 +43,4 @@ function mapDispatchToProps(dispatch) {
   }
  
 
- export default connect(null, mapDispatchToProps)(AppointmentItem)
+ export default withRouter(connect(null, mapDispatchToProps)(AppointmentItem))

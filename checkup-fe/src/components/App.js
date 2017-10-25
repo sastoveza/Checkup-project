@@ -43,7 +43,7 @@ class App extends Component {
           <Route path="/signUp" render={(props) => <AuthSignUpForm {...props} /> } />
           <Route path="/" render={(props) => <SearchForm {...props}/>} />
           <Route exact path="/results" render={(props) => <SearchContainer {...this.props} {...props} />} /> 
-          <Route exact path="/booking" component={BookingForm} />
+          <Route exact path="/booking/:id" component={BookingForm} />
 
       </div>
     );
