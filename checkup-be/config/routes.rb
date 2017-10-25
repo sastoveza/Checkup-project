@@ -9,7 +9,7 @@ delete '/users/delete', to: 'users#destroy'
 get '/welcome', to: 'application#welcome'
 get '/doctors', to: 'doctors#index'
 get '/docs', to: 'users#get_appointments'
-post 'appointment', to: 'appointments#create'
+post '/appointment', to: 'appointments#create'
 patch '/appointments', to: 'appointments#update'
 get '/appoint', to: 'appointments#index'
 

@@ -3,10 +3,10 @@ class AppointmentsController < ApplicationController
 
 
 	 def create
-	 	byebug
-	 	@appointment = Appointment.new(appointment_params, params[:appointment_id])
+	 	# byebug
+	 	@appointment = Appointment.new(params[:reason])
 	 	if @appointment.save
-	 		render "appointments/show"
+	 		render json: @appointment
  		else
  			render json: @appointment.errors.full_messages, status: 422
  		end
@@ -41,10 +41,10 @@ class AppointmentsController < ApplicationController
 	    end
 	end
 
-private
+# private
 
-	def appointment_params
-		params.require(:appointment).permit( :user_id, :doctor_id, :reason )
-	end
+# 	def appointment_params
+# 		params.require(:appointment).permit( :reason )
+# 	end
 
 end
