@@ -10,7 +10,10 @@ class BookingForm extends React.Component {
 		super (props)
 
 		this.state = {
-			reason: ''
+			reason: '',
+			username: '',
+			time: '',
+			doctor: ''
 		}
 	}
 
@@ -34,13 +37,16 @@ class BookingForm extends React.Component {
 	}
 	
 		this.setState ({
-			reason: ''
+			reason: '',
+			username: '',
+			time: '',
+			doctor: ''
 		})
 
 	}
 
 	render() {
-		console.log(this.props)
+		// console.log(this.props)
 		// const { appointment , user } = this.props
 	// if (appointment) {
 		return (
@@ -70,7 +76,7 @@ class BookingForm extends React.Component {
 								<br />
 						</Form.Group>
 						<Form.Group>
-							<Form.Field control={Button}>Submit</Form.Field>
+							<Form.Field control={Button} size='big' width={8} color='yellow'>Book Appointment</Form.Field>
 						</Form.Group>
 					</Form>
 				</ul>

@@ -40,7 +40,7 @@ export function createdAppointment(appointments) {
 }
 
 export function createAppointment(appointmentParams) {
-  const body = JSON.stringify(appointmentParams)
+  const body = JSON.stringify({reason: appointmentParams})
   const jwt = localStorage.getItem("jwtToken")
   return function (dispatch) {
     dispatch(creatingAppointment())

@@ -43,7 +43,7 @@ class App extends Component {
           <Route path="/" render={(props) => <SearchForm {...props}/>} />
           <Route exact path="/results" render={(props) => <SearchContainer {...this.props} {...props} />} /> 
           <Route exact path="/booking/:id" component={BookingForm} />
-          <Route path="profile" component={UserProfile} />
+          <Route path="/profile" component={UserProfile} />
 
       </div>
     );

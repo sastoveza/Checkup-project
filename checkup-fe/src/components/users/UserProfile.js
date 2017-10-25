@@ -21,7 +21,7 @@ class UserProfile extends React.Component {
 
 	componentDidMount() {
 		const { user } = this.props
-		this.props.currenUser(user.id)
+		this.props.currentUser(user.id)
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -60,6 +60,7 @@ class UserProfile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+	console.log(this.state)
 	const user = state.user.currentUser
 
 	let userAppointments
