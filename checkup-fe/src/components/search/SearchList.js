@@ -16,6 +16,7 @@ class SearchList extends React.Component {
       today: days[0],
       tomorrow: days[1],
       dayAfter: days[2]
+    
     }
   }
 
@@ -32,7 +33,7 @@ class SearchList extends React.Component {
           <Grid.Row>
           <Grid.Column width={7}></Grid.Column>
           <Grid.Column width={1}>
-            <Button>&lt;</Button>
+            <Button color='blue'>&lt;</Button>
           </Grid.Column>
           
           <Grid.Column width={2}>
@@ -48,9 +49,11 @@ class SearchList extends React.Component {
           </Grid.Column>
           
           <Grid.Column width={1}>
-            <Button>&gt;</Button>  
+            <Button color='blue'>&gt;</Button>  
           </Grid.Column>
           <Grid.Column width={1}></Grid.Column>
+
+          
 
           </Grid.Row>
         </Grid>

@@ -54,23 +54,25 @@ class SearchForm extends React.Component {
 	
 
 		return (
-			<div>	
-				<Form onSubmit={this.handleSearch}>
-					<Form.Field inline>
-						<input type="text" 
-							value={this.state.specialty} 
-							onChange={this.handleSpecialtyChange} 
-							placeholder="Search for Doctors" />
+			<div>
+				<ul>	
+					<Form onSubmit={this.handleSearch}>
+						<Form.Field inline>
+							<input type="text" 
+								value={this.state.specialty} 
+								onChange={this.handleSpecialtyChange} 
+								placeholder="Search for Doctors" />
 
-						<input type="text"
-							value={this.state.address}
-							onChange={this.handleAddressChange}
-							placeholder="Search with Address" />
-					
-					 	<Button>Search</Button>
-				 	</Form.Field>
-			 	</Form>
-			 	<br />
+							<input type="text"
+								value={this.state.address}
+								onChange={this.handleAddressChange}
+								placeholder="Search with City" />
+						
+						 	<Button>Search</Button>
+					 	</Form.Field>
+				 	</Form>
+				 	<br />
+		 		</ul>
 		 	</div>
 	 	)
 

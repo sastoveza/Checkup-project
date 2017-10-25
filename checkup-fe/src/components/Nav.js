@@ -3,6 +3,7 @@ import { NavLink, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/UserActions';
+import { Menu, Segment } from 'semantic-ui-react'
 
 
 
@@ -14,20 +15,22 @@ class Nav extends React.Component {
   render() {
   	if (localStorage.getItem('jwtToken')) {
   		return (
-  			<div className="ui secondary menu">
+  			<div>
+          <Menu pointing secondary>
 	  			  <NavLink activeClassName="active" className="item" to="/">Check Up</NavLink>
 		        <NavLink activeClassName="active" className="item" to="/profile">My Profile</NavLink>
             <NavLink activeClassName="active" className="item right" to="/login" onClick={this.props.logoutUser}>Log Out</NavLink>
-          
+          </Menu>
   			</div>
 		)
   	} else {
     return (
-      	<div className="ui secondary menu">
+      	<div>
+          <Menu pointing secondary>
       	
-	        <NavLink activeClassName="active" className="item" to="/">Check Up</NavLink>
-          <NavLink activeClassName="active" className="item right" to="/login">Log In</NavLink>
-       	
+  	        <NavLink activeClassName="active" className="item" to="/">Check Up</NavLink>
+            <NavLink activeClassName="active" className="item right" to="/login">Log In</NavLink>
+       	  </Menu>
      	 </div>
     	)
 	   }	

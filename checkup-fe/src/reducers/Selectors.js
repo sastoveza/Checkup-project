@@ -13,6 +13,21 @@ export const getAppointments = (appointments, ids) => {
 		}))
 }
 
+
+export const getUserAppointments = (appointments, ids) => {
+	let validIds =[]
+	ids.forEach(id => {
+		if (appointments[id].user_id !== null) {
+			validIds.push(id)
+		}
+	})
+
+	return (
+		validIds.map(id => {
+			return appointments[id];
+	}))
+}
+
 export const sortAppointmentsByDoctor = (doctors, appointments) => {
 	const sortedAppointments = {}
 	if (doctors[0]) {

@@ -69,7 +69,7 @@ function fetchedCurrentUser (user) {
 }
 
 export function currentUser() {
-	const jwt = localStorage.getItem("jwToken")
+	const jwt = localStorage.getItem("jwtToken")
 	return function(dispatch) {
 		fetch(`http://localhost:3000/users/me`, {
 			method: "GET",

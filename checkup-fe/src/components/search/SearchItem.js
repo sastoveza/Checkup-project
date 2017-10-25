@@ -35,30 +35,31 @@ class SearchItem extends React.Component{
     // console.log('APPTS: ', this.props.doctor.appointments)
    return (
        <div>
-        <Card.Group>
-          <Card color='olive'>
-            <Card.Content>
-              <Image floated='right' size='medium' src={this.props.doctor.image_url} />
-                <Card.Header>
-                  <a>{this.props.doctor.name}</a>
-                </Card.Header>  
-                <Card.Meta>
-                  <span className="date">{this.props.doctor.specialties.split(" ")[0]}</span>
-                </Card.Meta>
-                <Card.Description>
-                   {bio}
+        <ul>
+          <Card.Group>
+            <Card color='olive'>
+              <Card.Content>
+                <Image floated='right' size='medium' src={this.props.doctor.image_url} />
+                  <Card.Header>
+                    <a>{this.props.doctor.name}</a>
+                  </Card.Header>  
+                  <Card.Meta>
+                    <span className="date">{this.props.doctor.specialties.split(" ")[0]}</span>
+                  </Card.Meta>
+                  <Card.Description>
+                     {bio}
 
-                </Card.Description>     
-           </Card.Content>
-            <Card.Content extra>
-              <Icon name="user" />
-              {this.props.doctor.city},{this.props.doctor.state}
-              <br />
-              <Link to="/booking"><Button basic color='grey' size='large'>Book Appointment Now!</Button></Link>
-          </Card.Content>
-          </Card>
-        </Card.Group>
-       
+                  </Card.Description>     
+             </Card.Content>
+              <Card.Content extra>
+                <Icon name="user" />
+                {this.props.doctor.city},{this.props.doctor.state}
+                <br />
+                <Link to="/booking"><Button basic color='grey' size='large'>Book Appointment Now!</Button></Link>
+            </Card.Content>
+            </Card>
+          </Card.Group>
+        </ul>
        </div>
       )
     }

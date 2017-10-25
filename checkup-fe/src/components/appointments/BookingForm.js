@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-import { receiveAppointment } from '../../actions/AppointmentActions'
+import { createAppointment } from '../../actions/AppointmentActions'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { Form, Button, TextArea, Input } from 'semantic-ui-react'
@@ -30,7 +30,7 @@ class BookingForm extends React.Component {
 		event.preventDefault()
 		console.log(this.props)
 		if (this.state.reason !== "") {
-		this.props.receiveAppointment(this.state.reason)
+		this.props.createAppointment(this.state.reason)
 	}
 	
 		this.setState ({
@@ -46,21 +46,22 @@ class BookingForm extends React.Component {
 		return (
 			<div>
 				<ul>
-					<h3>Book Appointment</h3>
-					<Form onSubmit={this.handleSubmit}>
+					<h2>Book Appointment</h2>
+					<br />
+					<Form onSubmit={this.handleSubmit} size='big'>
 						<Form.Group>
-							<Form.Field control={Input} label='Name' placeholder='Username'/>
+							<Form.Field control={Input} label='Name' placeholder='Username' width={6}/>
 							<br />
 						</Form.Group>
 						<Form.Group>
-							<Form.Field control={Input} label='Time'/>	
+							<Form.Field control={Input} label='Time' width={6}/>	
 							<br />
 						</Form.Group>
 						<Form.Group>
-							<Form.Field control={Input} label='Doctor'/>
+							<Form.Field control={Input} label='Doctor' width={6}/>
 							<br />
 						</Form.Group>
-						<Form.Group inline>
+						<Form.Group inline width={6}>
 							<Form.Field control={TextArea} 
 								label='Reason for Visit'
 								onChange={this.handleChange}
@@ -89,7 +90,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		receiveAppointment: appointment => dispatch(receiveAppointment(appointment))
+		createAppointment: appointments => dispatch(createAppointment(appointments))
 	}
 }
 

@@ -17,12 +17,12 @@ class AppointmentItem extends React.Component {
 		// const filteredAppointments = this.props.doctor.appointments.map((appointments) => )
 		return (
 		   <div>
-	        <Grid>
+	        <Grid float= 'right' textAlign='center'>
 	          <Grid.Row>
-           		<Grid.Column>
+           		<Grid.Column width={4}>
           	  		{appday}
       	  		</Grid.Column>
-      	  		<Grid.Column>
+      	  		<Grid.Column width={4}>
           	  		<Link to={`/booking/${appId}`}>{apptime}</Link>
       	  		</Grid.Column>
   	  		  </Grid.Row>

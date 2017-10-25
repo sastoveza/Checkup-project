@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-function receivingAppointment() {
+export function receivingAppointment() {
   return {
     type: "RECEIVING_APPOINTMENTS"
   }
@@ -22,6 +22,65 @@ export function receiveAppointment() {
     .then((json) => {
       // console.log(json)
       dispatch(receivedAppointment(json))
+    })
+  }
+}
+
+export function creatingAppointment() {
+  return {
+    type: "CREATING_APPOINTMENT"
+  }
+}
+
+export function createdAppointment(appointments) {
+  return {
+    type: "CREATED_APPOINTMENT",
+    payload: appointments
+  }
+}
+
+export function createAppointment(appointmentParams) {
+  const body = JSON.stringify(appointmentParams)
+  const jwt = localStorage.getItem("jwtToken")
+  return function (dispatch) {
+    dispatch(creatingAppointment())
+    fetch("http://localhost:3000/appointment", {
+      method: "POST",
+      body: body,
+      headers: {
+        "Accept":"application/json",
+          "Content-Type":"application/json",
+          "Authorization": "Bearer " + jwt
+  }
+})
+    .then((res) => res.json())
+    .then((json) => {
+      dispatch(createdAppointment(json))
+    })
+  }
+}
+
+export function updatingAppointment() {
+  return {
+    type: "UPDATING_APPOINTMENT"
+  }
+}
+
+export function updatedAppointment(appointmentUpdated) {
+  return {
+    type: "UPDATED_APPOINTMENT",
+    payload: appointmentUpdated
+  }
+}
+
+
+export function updateAppointment() {
+  return function(dispatch) {
+    dispatch(updatingAppointment())
+    fetch('http://localhost:3000/appointments')
+    .then(res => res.json())
+    .then((json) => {
+      dispatch(updatingAppointment(json))
     })
   }
 }
