@@ -43,6 +43,8 @@ class BookingForm extends React.Component {
 			doctor: ''
 		})
 
+		this.props.history.push("/profile")
+
 	}
 
 	render() {

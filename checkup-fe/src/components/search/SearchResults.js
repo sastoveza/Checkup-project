@@ -10,7 +10,7 @@ class SearchResults extends React.Component {
 		return (
 			<div>
 				<SearchItem doctor={this.props.doctor}/>
-				<AppointmentList doctor={this.props.doctor} />	
+				<AppointmentList doctor={this.props.doctor}  />	
 			</div>
 		)
 	}

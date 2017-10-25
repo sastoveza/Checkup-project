@@ -12,6 +12,7 @@ import LoginForm from './users/LoginForm';
 import SignUpForm from './users/SignUpForm';
 import BookingForm from './appointments/BookingForm'
 import UserProfile from './users/UserProfile'
+import { currentUser } from '../actions/UserActions';
 
 
 
@@ -21,6 +22,11 @@ class App extends Component {
 
 	componentDidMount() {
 		this.props.fetchDoctors()
+    // console.log("mounted")
+    if (localStorage.getItem("jwtToken")) {
+      // console.log("reached the if")
+      this.props.currentUser()
+    }
 	}
 
 
@@ -43,25 +49,35 @@ class App extends Component {
           <Route path="/" render={(props) => <SearchForm {...props}/>} />
           <Route exact path="/results" render={(props) => <SearchContainer {...this.props} {...props} />} /> 
           <Route exact path="/booking/:id" component={BookingForm} />
-          <Route path="/profile" component={UserProfile} />
+          <Route path="/profile" render={(props) => <UserProfile users={this.props.user}/> } />
 
       </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    user: state.users.currentUser
+  }
+}
 
 function mapDispatchToProps(dispatch) {
 	return {
 		fetchDoctors: () => {
 			dispatch(fetchDoctors())
-		}
+
+		},
+    currentUser: () => {
+      dispatch(currentUser())
+    }
 	}
 }
 
 
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 //<Route exact path="/" render={(props) => <SearchContainer {...this.props} {...props} />} />  
 //<Route path="/results" render={(props) => <SearchForm {...props} />} />
