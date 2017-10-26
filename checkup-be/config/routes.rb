@@ -8,9 +8,9 @@ patch '/users/add', to: 'users#update'
 delete '/users/delete', to: 'users#destroy'
 get '/welcome', to: 'application#welcome'
 get '/doctors', to: 'doctors#index'
-get '/docs', to: 'users#get_appointments'
+get '/appoints', to: 'users#get_appointments'
 post '/appointment', to: 'appointments#create'
 patch '/appointments', to: 'appointments#update'
 get '/appoint', to: 'appointments#index'
-
+post '/get_current_user_appointment', to: 'appointments#get_current_user_appointment'
 end

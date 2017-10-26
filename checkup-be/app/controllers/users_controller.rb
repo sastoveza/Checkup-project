@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def get_appointments
     @user_appointments = User.find(params[:user_id])
+    byebug
     render json: @user_appointments, status: 200
   end
 

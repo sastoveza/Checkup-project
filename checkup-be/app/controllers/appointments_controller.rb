@@ -41,6 +41,13 @@ class AppointmentsController < ApplicationController
 	    end
 	end
 
+
+	def get_current_user_appointment
+		appointment = Appointment.where(:user_id => params[:id])
+		if appointment
+			render json: appointment
+		end
+	end
 # private
 
 # 	def appointment_params
