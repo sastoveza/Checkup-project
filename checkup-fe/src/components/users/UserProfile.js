@@ -45,7 +45,7 @@ class UserProfile extends React.Component {
 	}
 
 	renderWelcome = () => {
-		if (this.props.users) {
+		if (this.props.users && this.props.users.user) {
 		return (<h2>Welcome, {this.props.users.user.username}!</h2>)
 		}
 	}
@@ -71,7 +71,7 @@ class UserProfile extends React.Component {
 
 
 	render() {
-		console.log("render", this.props)
+		// console.log("render", this.props)
 		if (this.props.users !== null) {
 			if(this.props.appointments === null)
 			this.getUserAppointments()
