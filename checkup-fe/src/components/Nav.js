@@ -17,7 +17,7 @@ class Nav extends React.Component {
   		return (
   			<div>
           <Menu pointing secondary>
-	  			  <NavLink activeClassName="active" className="item" to="/">Check Up</NavLink>
+	  			  <NavLink activeClassName="active" className="item" to="/home">Check Up</NavLink>
 		        <NavLink activeClassName="active" className="item" to="/profile">My Profile</NavLink>
             <NavLink activeClassName="active" className="item right" to="/login" onClick={this.props.logoutUser}>Log Out</NavLink>
           </Menu>
@@ -28,7 +28,7 @@ class Nav extends React.Component {
       	<div>
           <Menu pointing secondary>
       	
-  	        <NavLink activeClassName="active" className="item" to="/">Check Up</NavLink>
+  	        <NavLink activeClassName="active" className="item" to="/home">Check Up</NavLink>
             <NavLink activeClassName="active" className="item right" to="/login">Log In</NavLink>
        	  </Menu>
      	 </div>

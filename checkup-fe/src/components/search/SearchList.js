@@ -29,9 +29,9 @@ class SearchList extends React.Component {
   
     return (
       <div>
-        <Grid float='right' textAlign='center'>
+        <Grid float='left' textAlign='center'>
           <Grid.Row>
-          <Grid.Column width={7}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
           <Grid.Column width={1}>
             <Button color='blue'>&lt;</Button>
           </Grid.Column>
@@ -51,7 +51,7 @@ class SearchList extends React.Component {
           <Grid.Column width={1}>
             <Button color='blue'>&gt;</Button>  
           </Grid.Column>
-          <Grid.Column width={1}></Grid.Column>
+          
 
           
 

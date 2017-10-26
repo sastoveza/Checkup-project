@@ -8,7 +8,7 @@ function loggedinUser(user) {
 export function loginUser(loginParams) {
 	const body = JSON.stringify(loginParams)
 	return function(dispatch) {
-		fetch(`http://localhost:3000/login`, {
+		fetch('http://localhost:3000/login', {
 			method: 'POST',
 			body: body,
 			headers: {

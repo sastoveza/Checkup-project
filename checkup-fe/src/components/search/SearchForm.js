@@ -2,7 +2,20 @@ import React from 'react';
 import { filteredDoctors } from '../../actions/FilterActions';
 import { connect } from 'react-redux';
 import { Link, Redirect, withRouter } from 'react-router-dom'
-import { Form, Button } from 'semantic-ui-react';
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Segment,
+  Visibility,
+  Form
+} from 'semantic-ui-react';
 // import { receiveAppointment } from '../../actions/AppointmentActions';
 
 
@@ -54,8 +67,7 @@ class SearchForm extends React.Component {
 	
 
 		return (
-			<div>
-				<ul>	
+			<div>	
 					<Form onSubmit={this.handleSearch}>
 						<Form.Field inline>
 							<input type="text" 
@@ -71,8 +83,6 @@ class SearchForm extends React.Component {
 						 	<Button>Search</Button>
 					 	</Form.Field>
 				 	</Form>
-				 	<br />
-		 		</ul>
 		 	</div>
 	 	)
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-import { createAppointment } from '../../actions/AppointmentActions'
+import { updateAppointment } from '../../actions/AppointmentActions'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { Form, Button, TextArea, Input } from 'semantic-ui-react'
@@ -11,14 +11,12 @@ class BookingForm extends React.Component {
 
 		this.state = {
 			reason: '',
-			username: '',
-			time: '',
-			doctor: ''
+			user_id: ''
 		}
 	}
 
 	// componentDidMount() {
-	// 	const appId = this.props.match.params.id;
+	
 	// 	this.props.receiveAppointment()
 	
 
@@ -31,16 +29,17 @@ class BookingForm extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
+		const appId = this.props.match.params.id;
+		
 		console.log(this.props)
+
 		if (this.state.reason !== "") {
-		this.props.createAppointment(this.state.reason)
-	}
+		    this.props.updateAppointment(appId, this.state.reason)
+	    }
 	
 		this.setState ({
 			reason: '',
-			username: '',
-			time: '',
-			doctor: ''
+			user_id: ''
 		})
 
 		this.props.history.push("/profile")
@@ -98,7 +97,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		createAppointment: appointments => dispatch(createAppointment(appointments))
+		updateAppointment: appointments => dispatch(updateAppointment(appointments))
 	}
 }
 

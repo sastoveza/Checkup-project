@@ -100,13 +100,23 @@ export function updatedAppointment(appointmentUpdated) {
 }
 
 
-export function updateAppointment() {
-  return function(dispatch) {
+export function updateAppointment(appointmentId, bookingParams) {
+  const body = JSON.stringify({reason: bookingParams})
+  const jwt = localStorage.getItem("jwtToken")
+  return function (dispatch) {
     dispatch(updatingAppointment())
-    fetch('http://localhost:3000/appointments')
-    .then(res => res.json())
+    fetch("http://localhost:3000/appointments/" + appointmentId, {
+      method: "PATCH",
+      body: body,
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json",
+        "Authorization": "Bearer " + jwt
+      }
+    })
+    .then((res) => res.json())
     .then((json) => {
-      dispatch(updatingAppointment(json))
+      dispatch(updatedAppointment(json))
     })
   }
 }

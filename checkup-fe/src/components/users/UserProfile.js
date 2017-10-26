@@ -8,6 +8,8 @@ import { getUserAppointments } from '../../reducers/Selectors';
 import { isEmpty } from 'lodash';
 import moment from 'moment'
 import { currentUserAppointment } from '../../actions/AppointmentActions'
+import { Button, Card } from 'semantic-ui-react'
+import Nav from '../Nav'
 
 
 class UserProfile extends React.Component {
@@ -26,10 +28,10 @@ class UserProfile extends React.Component {
 	console.log("cdm",this.props)
 	}
 
-	componentWillReceiveProps(nextProps) {
-		const { appointments } = nextProps;
-		this.setState({ appointments })
-	}
+	// componentWillReceiveProps(nextProps) {
+	// 	const { appointments } = nextProps;
+	// 	this.setState({ appointments })
+	// }
 
 	handleCancelAppointment(event, appointment) {
 		event.preventDefault()
@@ -51,13 +53,16 @@ class UserProfile extends React.Component {
 	renderReason = () => {
 		let list = ""
 		if (this.props.appointments) {
-			list = this.props.appointments.map(appointment => <li>
-				<div>Reason: {appointment.reason}</div>
-				<div>Time: {`${moment(appointment.start_time).format("dddd, MMMM, Do YYYY, h:mm a")}`} </div>
-				<div>Doctor: {appointment.doctor.name}</div></li>)
-		}
-		return list
+			list = this.props.appointments.map(appointment => 
+				<li>
+					<div>Reason: {appointment.reason}</div>
+					<div>Time: {`${moment(appointment.start_time).format("dddd, MMMM, Do YYYY, h:mm a")}`} </div>
+					<div>Doctor: {appointment.doctor.name}</div>
+				</li>
+			)}
+				return list
 	}
+
 
 	getUserAppointments = () => {
 		let params = {id: this.props.users.user.id}
@@ -79,38 +84,12 @@ class UserProfile extends React.Component {
 					</ul>
 				<ol>
 					{this.renderReason()}
+					<Button>Cancel Appointment</Button>
 				</ol>
 			</div>
 		)
 	}
 }
-
-
-//const UserContainer = (props) => {
-//   const { appointment, doctor, cancel } = props;
-//   return(
-//     <li>
-//       <div>
-//         <h2>Reason: {`${appointment.reason}`}</h2>
-//         <h2>Time: {`${moment(appointment.start_time).format("dddd, MMMM, Do YYYY, h:mm a")}`}</h2>
-//         <h2>Address: {`${appointment.city}`}</h2>
-//         <h2>Doctor: {`${appointment.doctor_name}`}</h2>
-//         {apppointmentButtons(appointment, cancel)}
-//       </div>
-//     </li>
-
-
-//   )
-// }
-
-// const apppointmentButtons = (appointment, callback) => {
-//   const startTime = moment(appointment.start_time);
-//   if(startTime._d > new Date()) {
-//     return <button onClick={callback}>Cancel Appointment</button>
-//   } 
-// }
-
-
 
 
 

@@ -55,7 +55,6 @@ class SearchItem extends React.Component{
                 <Icon name="user" />
                 {this.props.doctor.city},{this.props.doctor.state}
                 <br />
-                <Link to="/booking"><Button basic color='grey' size='large'>Book Appointment Now!</Button></Link>
             </Card.Content>
             </Card>
           </Card.Group>

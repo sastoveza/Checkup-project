@@ -9,10 +9,11 @@ import { Grid, Button } from 'semantic-ui-react'
 class AppointmentItem extends React.Component {
 
 	constructor(props) {
-		super(props)
+		super(props);
+
+		this.appointmentGroup = props['appointmentGroup'];
 
 		const days = getDayRange()
-
 		this.state = {
 		  today: days[0],
 	      tomorrow: days[1],
@@ -20,62 +21,48 @@ class AppointmentItem extends React.Component {
 		}
 	}
 
+	getAppointment(index) {
+		if (this.appointmentGroup[index] != null) {
+			return this.appointmentGroup[index];
+		}
+		return null;
+	}
+
 	render() {
-		
 
-		const { today, tomorrow, dayAfter } = this.state
+		const today = this.state['today'];
+		const tomorrow = this.state['tomorrow'];
+		const dayAfter = this.state['dayAfter'];
 
+		var appointments = [];
 
-		var appId = this.props.appointment.id
-		var appointments = this.props.appointment.start_time
-		let appdate = moment(appointments).format("MMMM Do YYYY")
-		let appday = moment(appointments).format("dddd")
-		let apptime = moment(appointments).format("h:mm a")
-
-
-		let apptoday = ""
-		let apptomorrow = ""
-		let appdayAfter = ""
-			if (appdate == today) {
-				apptoday = apptime
-			} else if (appdate = tomorrow) {
-				apptomorrow = apptime
-			} else {
-				appdayAfter = apptime
-			}
-
-
+        for (var i = 0; i < 3; i++){
+        	var appointment = this.getAppointment(i);
+        	if (appointment != null) {
+        		appointments[i] = {
+                    appId : appointment.id,
+                    startTime: moment(appointment.start_time).format('hh:mm a')
+                };
+        	} else {
+                appointments[i] = {
+                    appId : null,
+                    startTime: null
+                };
+        	}
+        }
 
 		return (
-		   <div>
-	        <Grid float='right' textAlign='center'>
-	          <Grid.Row>
-	          <Grid.Column width={7}></Grid.Column>
-	          <Grid.Column width={1}>
-	
-	          </Grid.Column>
-	          
-	          <Grid.Column width={2}>
-	            <Link to={`/booking/${appId}`}>{`${apptoday}`.slice(0, 10)}</Link>
-	          </Grid.Column>
-	          <br />
-
-	          <Grid.Column width={2}>
-	            <Link to={`/booking/${appId}`}>{`${apptomorrow}`.slice(0, 10)}</Link>
-	          </Grid.Column>
-	          <br />
-
-	          <Grid.Column width={2}>
-	            <Link to={`/booking/${appId}`}>{`${appdayAfter}`.slice(0, 10)}</Link>
-	          </Grid.Column>
-	          <br />
-
-	          <Grid.Column width={1}>  
-	          </Grid.Column>
-	          <Grid.Column width={1}></Grid.Column>
-          </Grid.Row>
-        </Grid>
-	    </div>
+	            <Grid.Row>
+	              <Grid.Column width={4}>
+	                 <Link to={`/booking/${appointments[0].appId}`}>{appointments[0].startTime}</Link> 
+	              </Grid.Column>
+	              <Grid.Column width={4}>
+	                <Link to={`/booking/${appointments[1].appId}`}>{appointments[1].startTime}</Link>
+	              </Grid.Column>
+	              <Grid.Column width={4}>
+	                 <Link to={`/booking/${appointments[2].appId}`}>{appointments[2].startTime}</Link>
+	              </Grid.Column>
+                </Grid.Row>
 	    )
 	}
 }

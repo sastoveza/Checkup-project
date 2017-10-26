@@ -6,13 +6,14 @@ import thunk from 'redux-thunk';
 import { fetchDoctors } from '../actions/DoctorActions'
 import SearchContainer from './search/SearchContainer';
 import Authorize from './Authorize';
-// import Homepage from './home/Homepage';
+import Homepage from './home/Homepage';
 import SearchForm from './search/SearchForm'
 import LoginForm from './users/LoginForm';
 import SignUpForm from './users/SignUpForm';
 import BookingForm from './appointments/BookingForm'
 import UserProfile from './users/UserProfile'
 import { currentUser } from '../actions/UserActions';
+
 
 
 
@@ -41,12 +42,14 @@ class App extends Component {
     return (
       <div className="App">        
         	
-          <Route path="/" component={Nav}/>
-          <br />
+        
+          <Route path="/home" component={Homepage}/>
+          <Route path="/" component={Nav} />
+         
           
           <Route path="/login" render={(props) => <AuthLoginForm  {...props} /> } />
           <Route path="/signUp" render={(props) => <AuthSignUpForm {...props} /> } />
-          <Route path="/" render={(props) => <SearchForm {...props}/>} />
+          <Route path="/doctors" render={(props) => <SearchForm {...props}/>} />
           <Route exact path="/results" render={(props) => <SearchContainer {...this.props} {...props} />} /> 
           <Route exact path="/booking/:id" component={BookingForm} />
           <Route path="/profile" render={(props) => <UserProfile users={this.props.user}/> } />
@@ -79,6 +82,7 @@ function mapDispatchToProps(dispatch) {
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
+//  <Route path="/" component={Nav}/>
 //<Route exact path="/" render={(props) => <SearchContainer {...this.props} {...props} />} />  
 //<Route path="/results" render={(props) => <SearchForm {...props} />} />
 

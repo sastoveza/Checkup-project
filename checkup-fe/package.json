@@ -9,6 +9,7 @@
     "babel-preset-react": "^6.24.1",
     "google-maps-react": "^1.1.0",
     "lodash": "^4.17.4",
+    "lodash.chunk": "^4.2.0",
     "material-ui": "^0.19.3",
     "moment": "^2.19.1",
     "react": "^16.0.0",
