@@ -7,7 +7,7 @@ import { fetchDoctors } from '../actions/DoctorActions'
 import SearchContainer from './search/SearchContainer';
 import Authorize from './Authorize';
 import Homepage from './home/Homepage';
-import SearchForm from './search/SearchForm'
+import SearchHomepage from './search/SearchHompage'
 import LoginForm from './users/LoginForm';
 import SignUpForm from './users/SignUpForm';
 import BookingForm from './appointments/BookingForm'
@@ -44,12 +44,13 @@ class App extends Component {
         	
         
           <Route path="/home" component={Homepage}/>
+          <Route exact path="/doctors" render={(props) => <SearchHomepage {...props}/>} />
           <Route path="/" component={Nav} />
          
           
           <Route path="/login" render={(props) => <AuthLoginForm  {...props} /> } />
           <Route path="/signUp" render={(props) => <AuthSignUpForm {...props} /> } />
-          <Route path="/doctors" render={(props) => <SearchForm {...props}/>} />
+          
           <Route exact path="/results" render={(props) => <SearchContainer {...this.props} {...props} />} /> 
           <Route exact path="/booking/:id" component={BookingForm} />
           <Route path="/profile" render={(props) => <UserProfile users={this.props.user}/> } />

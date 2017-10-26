@@ -94,7 +94,7 @@ export default class HomepageLayout extends Component {
                   <Header
                     inverted style={{ fontSize: '2.5em', fontWeight: 'normal' }}
                   />
-                    <SearchForm />
+                  
                 </Container>
           </Segment>  
         </Visibility>
