@@ -14,6 +14,32 @@ export function receivedAppointment(appointment) {
   }
 }
 
+
+export function currentUserAppointment(id) {
+  const jwt = localStorage.getItem("jwtToken")
+  const body = JSON.stringify(id)
+  return function (dispatch) {
+    fetch('http://localhost:3000/get_current_user_appointment',{
+      method: "POST",
+      body: body,
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json",
+        "Authorization": "Bearer " + jwt
+
+
+        }
+      })
+    .then(res => res.json())
+    .then((json) => {
+      // console.log(json)
+      dispatch(receivedAppointment(json))
+    })
+  }
+}
+
+
+
 export function receiveAppointment() {
   return function (dispatch) {
     dispatch(receivingAppointment())

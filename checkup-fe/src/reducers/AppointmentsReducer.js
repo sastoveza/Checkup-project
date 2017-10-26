@@ -1,4 +1,4 @@
-function AppointmentsReducer(state = {appointment: [], appointments: [], appointmentUpdated: []}, action) {
+function AppointmentsReducer(state = {appointment: null, appointments: [], appointmentUpdated: []}, action) {
   switch (action.type) {
     case "RECEIVED_APPOINTMENTS":
       return Object.assign({}, state, {appointment: action.payload, isFetching: false})
@@ -9,7 +9,7 @@ function AppointmentsReducer(state = {appointment: [], appointments: [], appoint
     case "CREATING_APPOINTMENTS":
       return Object.assign({}, state, { isFetching: true})
   case "UPDATED_APPOINTMENTS":
-      return Object.assign({}, state, {appointment: action.payload, isFetching: false})
+      return Object.assign({}, state, {appointmentUpdated: action.payload, isFetching: false})
     case "UPDATING_APPOINTMENTS":
       return Object.assign({}, state, { isFetching: true})
     default: 

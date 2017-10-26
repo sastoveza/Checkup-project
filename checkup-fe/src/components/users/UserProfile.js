@@ -1,11 +1,13 @@
 import React from 'react';
 import UserContainer from './UserContainer';
-import { connect } from 'react-redux';
+import { connect, Link } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { updateAppointment } from '../../actions/AppointmentActions';
 import { currentUser } from '../../actions/UserActions'
 import { getUserAppointments } from '../../reducers/Selectors';
 import { isEmpty } from 'lodash';
+import moment from 'moment'
+import { currentUserAppointment } from '../../actions/AppointmentActions'
 
 
 class UserProfile extends React.Component {
@@ -19,10 +21,10 @@ class UserProfile extends React.Component {
 		}
 	}
 
-	// componentDidMount() {
-	// 	const { user } = this.props
-	// 	this.props.currentUser(user.id)
-	// }
+	componentDidMount() {
+		// const { user } = this.props
+	console.log("cdm",this.props)
+	}
 
 	componentWillReceiveProps(nextProps) {
 		const { appointments } = nextProps;
@@ -46,9 +48,29 @@ class UserProfile extends React.Component {
 		}
 	}
 
+	renderReason = () => {
+		let list = ""
+		if (this.props.appointments) {
+			list = this.props.appointments.map(appointment => <li>
+				<div>Reason: {appointment.reason}</div>
+				<div>Time: {`${moment(appointment.start_time).format("dddd, MMMM, Do YYYY, h:mm a")}`} </div>
+				<div>Doctor: {appointment.doctor.name}</div></li>)
+		}
+		return list
+	}
+
+	getUserAppointments = () => {
+		let params = {id: this.props.users.user.id}
+		this.props.currentUserAppointment(params)
+	}
+
+
 	render() {
-		const { appointments } = this.state
-		console.log(this.props)
+		console.log("render", this.props)
+		if (this.props.users !== null) {
+			if(this.props.appointments === null)
+			this.getUserAppointments()
+	}
 		return(
 			<div>
 				<ul>
@@ -56,10 +78,7 @@ class UserProfile extends React.Component {
 					<h3>Your Appointments:</h3>
 					</ul>
 				<ol>
-					{appointments.map((app, index) => {
-						return(
-							<UserContainer key={index} appointment={app} cancel={(event) => this.handleCancelAppointment(event, app)} />)
-					})}
+					{this.renderReason()}
 				</ol>
 			</div>
 		)
@@ -95,13 +114,14 @@ class UserProfile extends React.Component {
 
 
 
-const mapStateToProps = (state) => {
-	
+const mapStateToProps = (state) => {	
 	const user = state.users.currentUser
 
 	let userAppointments
 		if (state.appointments.appointments.length === 0) {
 			userAppointments = []
+				console.log(userAppointments)
+
 		} else {
 
 			userAppointments = getUserAppointments(state.appointments, user.appointments_ids)
@@ -109,7 +129,7 @@ const mapStateToProps = (state) => {
 
 		return {
 			user: user,
-			appointments: userAppointments
+			appointments: state.appointments.appointment
 	}
 }
 
@@ -117,6 +137,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		updateAppointment: appointment => dispatch(updateAppointment(appointment)),
 		currentUser: id => dispatch(currentUser(id)),
+		currentUserAppointment: id => dispatch(currentUserAppointment(id))
 	}
 }
 
