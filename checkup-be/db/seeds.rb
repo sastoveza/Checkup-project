@@ -73,10 +73,11 @@ Doctor.all.each_with_index do |doctor|
   current_yr = current_time.year
   current_m = current_time.month
   current_d = current_time.day
-  start_day = Time.new(current_yr, current_m, current_d, 8) - 7.day
-100.times do
-  user = User.all
-  # byebug
+  start_day = Time.new(current_yr, current_m, current_d, 8)
+
+  30.times do
+    user = User.all
+    # byebug
     Appointment.create!(doctor_id: doctor.id, start_time: start_day.to_datetime)
   
 

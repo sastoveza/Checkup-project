@@ -10,7 +10,7 @@ get '/welcome', to: 'application#welcome'
 get '/doctors', to: 'doctors#index'
 get '/appoints', to: 'users#get_appointments'
 post '/appointment', to: 'appointments#create'
-patch '/appointments', to: 'appointments#update'
+patch '/appointments/:id', to: 'appointments#update'
 get '/appoint', to: 'appointments#index'
 post '/get_current_user_appointment', to: 'appointments#get_current_user_appointment'
 end

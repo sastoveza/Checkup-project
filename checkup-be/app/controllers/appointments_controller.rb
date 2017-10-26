@@ -18,19 +18,24 @@ class AppointmentsController < ApplicationController
 	  	render json: @appointment
 	  end
 
+
+
+ # @comment = Comment.find_by(id: params[:id])
+ #    @comment.body = params[:body]
+ #    @comment.save
+ #    render json: @comment, status: 201
+ #  end
+
 	  def update
+	  	# byebug
 	    @appointment = Appointment.find(params[:id])
 	    app_info = params[:appointment]
-	    reason = app_info[:reason].empty? ? nil : app_info[:reason]
-
-	    if !reason.nil? || app_info[:user_id].empty?
-	      app_params = { "reason" => reason,
-	                     "user_id" => app_info[:user_id] }
-	      @appointment.update(app_params)
-	      render :edit
-	    else
-	      render json: ["Please explain the reason for your visit"], status: 422
-	    end
+	    reason = app_info[:reason]
+	      @appointment.save
+	      render json: @appointment
+	    # else
+	    #   render json: ["Please explain the reason for your visit"], status: 422
+	    # end
 	  end
 
 	  def show
