@@ -7,7 +7,7 @@ import { Form, Button, TextArea, Input } from 'semantic-ui-react'
 
 class BookingForm extends React.Component {
 	constructor(props) {
-		super (props)
+		super(props)
 
 		this.state = {
 			reason: '',
@@ -30,11 +30,8 @@ class BookingForm extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault()
 		const appId = this.props.match.params.id;
-		
-		console.log(this.props)
-
 		if (this.state.reason !== "") {
-		    this.props.updateAppointment(appId, this.state.reason)
+		    this.props.updateAppointment(appId, this.state.reason, this.props.user_id)
 	    }
 	
 		this.setState ({
@@ -91,13 +88,14 @@ class BookingForm extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 	// debugger;
 	return {
-		appointment: state.appointments[ownProps.match.params.id]
+		appointment: state.appointments[ownProps.match.params.id],
+		user_id: state.users.currentUser.user.id
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		updateAppointment: appointments => dispatch(updateAppointment(appointments))
+		updateAppointment: (appId, bookingParams, user_id) => dispatch(updateAppointment(appId, bookingParams, user_id))
 	}
 }
 

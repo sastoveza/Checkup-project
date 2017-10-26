@@ -1,4 +1,4 @@
-function UsersReducer(state = { currentUser: null } , action){
+function UsersReducer(state = { currentUser: {user: "", appointments: []} } , action){
 
   switch (action.type) {
     case "LOGGEDIN_USER":
@@ -8,6 +8,7 @@ function UsersReducer(state = { currentUser: null } , action){
       return Object.assign({}, state, {currentUser: null})
 
   	 case "FETCHED_CURRENT_USER":
+     console.log('fetch current user', action.payload)
       return Object.assign({}, state, {currentUser: action.payload})
   
     default:

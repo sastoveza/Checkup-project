@@ -22,10 +22,10 @@ class App extends Component {
 
 
 	componentDidMount() {
+    console.log("this is in app", this.props.user)
 		this.props.fetchDoctors()
-    // console.log("mounted")
-    if (localStorage.getItem("jwtToken")) {
-      // console.log("reached the if")
+    if (localStorage.getItem("jwtToken") && this.props.user === "") {
+      console.log("got jwt", this.props)
       this.props.currentUser()
     }
 	}
@@ -34,7 +34,7 @@ class App extends Component {
 
   render() {
 
-  
+    console.log("this is in app", this.props.user)
     const AuthLoginForm = Authorize(LoginForm)
     const AuthSignUpForm = Authorize(SignUpForm)
 
@@ -45,12 +45,11 @@ class App extends Component {
         
           <Route path="/home" component={Homepage}/>
           <Route exact path="/doctors" render={(props) => <SearchHomepage {...props}/>} />
-          <Route path="/" component={Nav} />
          
-          
+
+          <Route path="/" component={Nav} />
           <Route path="/login" render={(props) => <AuthLoginForm  {...props} /> } />
           <Route path="/signUp" render={(props) => <AuthSignUpForm {...props} /> } />
-          
           <Route exact path="/results" render={(props) => <SearchContainer {...this.props} {...props} />} /> 
           <Route exact path="/booking/:id" component={BookingForm} />
           <Route path="/profile" render={(props) => <UserProfile users={this.props.user}/> } />
@@ -61,8 +60,9 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("mapStateToProps", state)
   return {
-    user: state.users.currentUser
+    user: state.users.currentUser.user
   }
 }
 

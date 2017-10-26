@@ -65,6 +65,7 @@ class UserProfile extends React.Component {
 
 
 	getUserAppointments = () => {
+		// debugger;
 		let params = {id: this.props.users.user.id}
 		this.props.currentUserAppointment(params)
 	}
@@ -94,7 +95,7 @@ class UserProfile extends React.Component {
 
 
 const mapStateToProps = (state) => {	
-	const user = state.users.currentUser
+	const users = state.users.currentUser
 
 	let userAppointments
 		if (state.appointments.appointments.length === 0) {
@@ -103,11 +104,11 @@ const mapStateToProps = (state) => {
 
 		} else {
 
-			userAppointments = getUserAppointments(state.appointments, user.appointments_ids)
+			userAppointments = getUserAppointments(state.appointments, users.appointments_ids)
 		}
 
 		return {
-			user: user,
+			users: users,
 			appointments: state.appointments.appointment
 	}
 }

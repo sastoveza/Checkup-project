@@ -20,26 +20,18 @@ class AppointmentsController < ApplicationController
 
 
 
- # @comment = Comment.find_by(id: params[:id])
- #    @comment.body = params[:body]
- #    @comment.save
- #    render json: @comment, status: 201
- #  end
-
 	  def update
-	  	# byebug
 	    @appointment = Appointment.find(params[:id])
-	    app_info = params[:appointment]
-	    reason = app_info[:reason]
-	      @appointment.save
-	      render json: @appointment
-	    # else
-	    #   render json: ["Please explain the reason for your visit"], status: 422
-	    # end
+ 	        @user = User.find(params[:user_id])
+	    		@appointment.user = @user
+	    		@appointment.save
+    		render json: @appointment
 	  end
+
 
 	  def show
 	    @appointment = Appointment.find(params[:id])
+
 
 	    unless @appointment.user == nil
 	      render json: ["This appointment is already booked"], status: 403

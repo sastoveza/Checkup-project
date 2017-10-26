@@ -74,27 +74,18 @@ export default class SearchHomepage extends Component {
               <Container text>
                 <Header
                   as='h1'
-                  content='Book Your Doctor'
+                  content='Search your doctor'
                   inverted
                   style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: '1em' }}
                 />
-                <Header
-                  as='h2'
-                  content='Get checked up.'
-                  inverted
-                  style={{ fontSize: '1.7em', fontWeight: 'normal' }}
-                />
-                <Link to="/doctors"><Button primary size='huge'>
-                  Get Started
-                  <Icon name='right arrow' />
-                </Button></Link>
+        
               </Container>
-
+                <SearchForm />
                 <Container>
                   <Header
                     inverted style={{ fontSize: '2.5em', fontWeight: 'normal' }}
                   />
-                    <SearchForm />
+                    
                 </Container>
           </Segment>  
         </Visibility>

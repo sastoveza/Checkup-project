@@ -100,8 +100,8 @@ export function updatedAppointment(appointmentUpdated) {
 }
 
 
-export function updateAppointment(appointmentId, bookingParams) {
-  const body = JSON.stringify({reason: bookingParams})
+export function updateAppointment(appointmentId, bookingParams, userId) {
+  const body = JSON.stringify({reason: bookingParams, user_id: userId})
   const jwt = localStorage.getItem("jwtToken")
   return function (dispatch) {
     dispatch(updatingAppointment())
