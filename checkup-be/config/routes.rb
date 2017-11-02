@@ -13,4 +13,5 @@ post '/appointment', to: 'appointments#create'
 patch '/appointments/:id', to: 'appointments#update'
 get '/appoint', to: 'appointments#index'
 post '/get_current_user_appointment', to: 'appointments#get_current_user_appointment'
+post '/deleteAppointment', to: 'appointments#destroy'
 end

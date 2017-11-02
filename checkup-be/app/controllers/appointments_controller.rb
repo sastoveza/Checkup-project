@@ -45,6 +45,12 @@ class AppointmentsController < ApplicationController
 			render json: appointment
 		end
 	end
+
+	def destroy
+		@appointment = Appointment.find(params[:appointment_id])
+		@appointment.destroy
+		render json: User.find(params[:user_id]).appointments
+	end
 # private
 
 # 	def appointment_params

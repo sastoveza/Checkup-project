@@ -10,7 +10,7 @@ import moment from 'moment'
 import { currentUserAppointment } from '../../actions/AppointmentActions'
 import { Button, Card } from 'semantic-ui-react'
 import Nav from '../Nav'
-
+import { deleteAppointment } from '../../actions/AppointmentActions'
 
 class UserProfile extends React.Component {
 	constructor(props){
@@ -33,16 +33,16 @@ class UserProfile extends React.Component {
 	// 	this.setState({ appointments })
 	// }
 
-	handleCancelAppointment(event, appointment) {
-		event.preventDefault()
-		const data = {
-			reason: null,
-			user_id: null,
-			id: appointment.id
-		}
+	// handleCancelAppointment(event, appointment) {
+	// 	event.preventDefault()
+	// 	const data = {
+	// 		reason: null,
+	// 		user_id: null,
+	// 		id: appointment.id
+	// 	}
 
-		this.props.updateAppointment(data)
-	}
+	// 	this.props.updateAppointment(data)
+	// }
 
 	renderWelcome = () => {
 		if (this.props.users && this.props.users.user) {
@@ -50,14 +50,27 @@ class UserProfile extends React.Component {
 		}
 	}
 
+	onClick = (event) => {
+		event.preventDefault()
+		console.log(this.props.users.appointments)
+		alert("THANKS FOR USING CHECKUP!!!")
+		// event.target.value
+		
+		// const appt = this.props.users.appointments.filter(obj => {
+		// 	return obj.id = event.target.value
+		// })
+		// this.props.deleteAppointment(appt.toString(), this.props.users.user)
+	}
+
 	renderReason = () => {
 		let list = ""
 		if (this.props.appointments) {
-			list = this.props.appointments.map(appointment => 
-				<li>
+			list = this.props.appointments.map((appointment, index) => 
+				<li value={index}>
 					<div>Reason: {appointment.reason}</div>
 					<div>Time: {`${moment(appointment.start_time).format("dddd, MMMM, Do YYYY, h:mm a")}`} </div>
 					<div>Doctor: {appointment.doctor.name}</div>
+					<Button onClick={this.onClick}>Cancel Appointment</Button>
 				</li>
 			)}
 				return list
@@ -85,7 +98,7 @@ class UserProfile extends React.Component {
 					</ul>
 				<ol>
 					{this.renderReason()}
-					<Button>Cancel Appointment</Button>
+					
 				</ol>
 			</div>
 		)
@@ -117,7 +130,8 @@ const mapDispatchToProps = dispatch => {
 	return {
 		updateAppointment: appointment => dispatch(updateAppointment(appointment)),
 		currentUser: id => dispatch(currentUser(id)),
-		currentUserAppointment: id => dispatch(currentUserAppointment(id))
+		currentUserAppointment: id => dispatch(currentUserAppointment(id)),
+		deleteAppointment: (appt, user) => dispatch(deleteAppointment(appt,user))
 	}
 }
 

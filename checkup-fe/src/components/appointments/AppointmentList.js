@@ -66,11 +66,11 @@ class AppointmentList extends React.Component {
     })
 
     return (
-      
+      <div>
         <Grid float='right' textAlign='center'>
           {appointmentItems}
         </Grid>
-      
+      </div>
     )
   }
 }

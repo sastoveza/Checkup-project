@@ -13,7 +13,8 @@ class Nav extends React.Component {
   }
 
   render() {
-  	if (localStorage.getItem('jwtToken')) {
+    console.log(this.props.location.pathname)
+  	if (localStorage.getItem('jwtToken') && this.props.location.pathname !== "/home" && this.props.location.pathname !== "/doctors") {
   		return (
   			<div>
           <Menu pointing secondary>
@@ -23,11 +24,18 @@ class Nav extends React.Component {
           </Menu>
   			</div>
 		)
-  	} else {
+  	} else if (localStorage.getItem('jwtToken') && this.props.location.pathname === "/home" || this.props.location.pathname === "/doctors") {
+     return (
+        null
+  
+        )
+    }
+     else {
+
     return (
       	<div>
           <Menu pointing secondary>
-      	
+      	 
   	        <NavLink activeClassName="active" className="item" to="/home">Check Up</NavLink>
             <NavLink activeClassName="active" className="item right" to="/login">Log In</NavLink>
        	  </Menu>

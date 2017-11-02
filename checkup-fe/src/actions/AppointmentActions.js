@@ -38,6 +38,40 @@ export function currentUserAppointment(id) {
   }
 }
 
+export function deleteAppointment(appt_id, user_id){
+  const token = localStorage.getItem("jwtToken")
+  const body = JSON.stringify({appt: appt_id, user: user_id})
+  return function (dispatch) {
+    fetch('http://localhost:3000/deleteAppointment',{
+      method: "POST",
+      body: body,
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json",
+        "Authorization": "Bearer " + token
+
+
+        }
+      })
+    .then(res => res.json())
+    .then((json) => {
+      // console.log(json)
+      dispatch(deletingAppointment(json))
+    })
+  }
+
+}
+
+export function deletingAppointment(appointment) {
+
+ return {
+    type: "DELETING_APPOINTMENT",
+    payload: appointment
+  }
+
+}
+
+
 
 
 export function receiveAppointment() {

@@ -12,6 +12,8 @@ function AppointmentsReducer(state = {appointment: null, appointments: [], appoi
       return Object.assign({}, state, {appointmentUpdated: action.payload, isFetching: false})
     case "UPDATING_APPOINTMENTS":
       return Object.assign({}, state, { isFetching: true})
+    case "DELETING_APPOINTMENT":
+      return Object.assign({}, state, { isFetching: true, appointments: action.payload})
     default: 
       return state
   }

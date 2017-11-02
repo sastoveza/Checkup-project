@@ -19,9 +19,9 @@ import SearchForm from '../search/SearchForm'
 const FixedMenu = () => (
   <Menu fixed='top' size='large'>
     <Container>
-      <Link to="/"><Menu.Item active>Home</Menu.Item></Link>
+      <Link to="/home"><Menu.Item active>Home</Menu.Item></Link>
       <Link to="/doctors"><Menu.Item>Doctors</Menu.Item></Link>
-      <Link to="/"><Menu.Item>Company</Menu.Item></Link>
+      <Link to="/profile"><Menu.Item>My Profile</Menu.Item></Link>
       <Menu.Menu position='right'>
         <Menu.Item className='item'>
           <Link to="/login"><Button>Log in</Button></Link>
@@ -60,9 +60,9 @@ export default class SearchHomepage extends Component {
           >
             <Container>
               <Menu inverted pointing secondary size='large'>
-                  <Link to="/"><Menu.Item active>Home</Menu.Item></Link>
+                  <Link to="/home"><Menu.Item active>Home</Menu.Item></Link>
                   <Link to="/doctors"><Menu.Item>Doctors</Menu.Item></Link>
-                  <Link to="/"><Menu.Item>About</Menu.Item></Link>
+                  <Link to="/profile"><Menu.Item>My Profile</Menu.Item></Link>
                   <Menu.Item position='right'>
                     <Link to="/login"><Button inverted>Log in</Button></Link>
                     <Link to="/signUp"><Button inverted style={{ marginLeft: '0.5em' }}>Sign Up</Button></Link>
